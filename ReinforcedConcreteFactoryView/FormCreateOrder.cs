@@ -1,4 +1,5 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using System;
@@ -13,9 +14,9 @@ namespace ReinforcedConcreteFactoryView
         public new IUnityContainer Container { get; set; }
 
         private readonly IProductLogic logicP;
-        private readonly IMainLogic logicM;
+        private readonly MainLogic logicM;
 
-        public FormCreateOrder(IProductLogic logicP, IMainLogic logicM)
+        public FormCreateOrder(IProductLogic logicP, MainLogic logicM)
         {
             InitializeComponent();
             this.logicP = logicP;
@@ -91,7 +92,7 @@ namespace ReinforcedConcreteFactoryView
 
             try
             {
-                logicM.CreateOrder(new OrderBindingModel
+                logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),

@@ -1,4 +1,5 @@
-﻿using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
+﻿using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
+using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryListImplement.Implements;
 using System;
 using System.Windows.Forms;
@@ -25,7 +26,8 @@ namespace ReinforcedConcreteFactoryView
 
             currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IProductLogic, ProductLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainLogic, MainLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IOrderLogic, OrderLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

@@ -27,7 +27,6 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-
                 var list = logic.GetList();
                 if (list != null)
                 {

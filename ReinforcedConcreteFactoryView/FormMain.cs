@@ -1,4 +1,5 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using System;
 using System.Windows.Forms;
@@ -11,12 +12,15 @@ namespace ReinforcedConcreteFactoryView
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        private readonly IMainLogic logic;
+        private readonly MainLogic logic;
 
-        public FormMain(IMainLogic logic)
+        private readonly IOrderLogic orderLogic;
+
+        public FormMain(MainLogic logic, IOrderLogic orderLogic)
         {
             InitializeComponent();
             this.logic = logic;
+            this.orderLogic = orderLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -28,7 +32,7 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                var list = logic.GetOrders();
+                var list = orderLogic.Read(null);
 
                 if (list != null)
                 {
@@ -73,7 +77,7 @@ namespace ReinforcedConcreteFactoryView
 
                 try
                 {
-                    logic.TakeOrderInWork(new OrderBindingModel { Id = id });
+                    logic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -92,7 +96,7 @@ namespace ReinforcedConcreteFactoryView
 
                 try
                 {
-                    logic.FinishOrder(new OrderBindingModel { Id = id });
+                    logic.FinishOrder(new ChangeStatusBindingModel { OrderId = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -111,7 +115,7 @@ namespace ReinforcedConcreteFactoryView
 
                 try
                 {
-                    logic.PayOrder(new OrderBindingModel { Id = id });
+                    logic.PayOrder(new ChangeStatusBindingModel { OrderId = id });
                     LoadData();
                 }
                 catch (Exception ex)

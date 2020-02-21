@@ -62,7 +62,7 @@
             // 
             this.buttonRef.Location = new System.Drawing.Point(597, 195);
             this.buttonRef.Name = "buttonRef";
-            this.buttonRef.Size = new System.Drawing.Size(125, 46);
+            this.buttonRef.Size = new System.Drawing.Size(130, 46);
             this.buttonRef.TabIndex = 9;
             this.buttonRef.Text = "Обновить";
             this.buttonRef.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
             // 
             this.buttonDel.Location = new System.Drawing.Point(597, 142);
             this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(127, 47);
+            this.buttonDel.Size = new System.Drawing.Size(130, 47);
             this.buttonDel.TabIndex = 8;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
