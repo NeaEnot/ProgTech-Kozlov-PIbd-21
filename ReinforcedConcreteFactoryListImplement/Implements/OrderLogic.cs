@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryListImplement.Models;
-using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 
 namespace ReinforcedConcreteFactoryListImplement.Implements
