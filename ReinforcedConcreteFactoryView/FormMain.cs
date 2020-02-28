@@ -61,6 +61,12 @@ namespace ReinforcedConcreteFactoryView
             form.ShowDialog();
         }
 
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();
@@ -129,6 +135,12 @@ namespace ReinforcedConcreteFactoryView
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void buttonReplenishWarehouse_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReplenishWarehouse>();
+            form.ShowDialog();
         }
     }
 }

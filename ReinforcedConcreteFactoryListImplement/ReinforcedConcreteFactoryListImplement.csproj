@@ -44,14 +44,17 @@
     <Compile Include="Implements\ComponentLogic.cs" />
     <Compile Include="Implements\OrderLogic.cs" />
     <Compile Include="Implements\ProductLogic.cs" />
+    <Compile Include="Implements\WarehouseLogic.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComponent.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\WarehouseComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractShopBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
+    <ProjectReference Include="..\ReinforcedConcreteFactoryBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
       <Project>{deae19c7-e6af-445a-85a3-f995a266d7b9}</Project>
       <Name>ReinforcedConcreteFactoryBusinessLogic</Name>
     </ProjectReference>
