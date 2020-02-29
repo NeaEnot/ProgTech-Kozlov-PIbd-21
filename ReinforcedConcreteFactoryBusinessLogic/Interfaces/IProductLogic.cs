@@ -10,14 +10,10 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
 {
     public interface IProductLogic
     {
-        List<ProductViewModel> GetList();
+        List<ProductViewModel> Read(ProductBindingModel model);
 
-        ProductViewModel GetElement(int id);
+        void CreateOrUpdate(ProductBindingModel model);
 
-        void AddElement(ProductBindingModel model);
-
-        void UpdElement(ProductBindingModel model);
-
-        void DelElement(int id);
+        void Delete(ProductBindingModel model);
     }
 }

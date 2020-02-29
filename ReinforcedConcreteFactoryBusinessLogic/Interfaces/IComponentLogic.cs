@@ -10,14 +10,10 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
 {
     public interface IComponentLogic
     {
-        List<ComponentViewModel> GetList();
+        List<ComponentViewModel> Read(ComponentBindingModel model);
 
-        ComponentViewModel GetElement(int id);
+        void CreateOrUpdate(ComponentBindingModel model);
 
-        void AddElement(ComponentBindingModel model);
-
-        void UpdElement(ComponentBindingModel model);
-
-        void DelElement(int id);
+        void Delete(ComponentBindingModel model);
     }
 }

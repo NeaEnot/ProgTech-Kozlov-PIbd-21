@@ -37,6 +37,9 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -144,13 +147,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractShopBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
+    <ProjectReference Include="..\ReinforcedConcreteFactoryBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
       <Project>{deae19c7-e6af-445a-85a3-f995a266d7b9}</Project>
       <Name>ReinforcedConcreteFactoryBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractShopListImplement\ReinforcedConcreteFactoryListImplement.csproj">
-      <Project>{ee1e94a6-d477-4591-afc4-a2bf8a55d095}</Project>
-      <Name>ReinforcedConcreteFactoryListImplement</Name>
+    <ProjectReference Include="..\ReinforcedConcreteFactoryFileImplement\ReinforcedConcreteFactoryFileImplement.csproj">
+      <Project>{8998a873-8c6d-4a4c-84ae-6d925adfedff}</Project>
+      <Name>ReinforcedConcreteFactoryFileImplement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
