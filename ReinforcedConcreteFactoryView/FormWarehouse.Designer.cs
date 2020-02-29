@@ -104,7 +104,7 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
             this.Name = "FormWarehouse";
-            this.Text = "Добавить склад";
+            this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormWarehouse_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();

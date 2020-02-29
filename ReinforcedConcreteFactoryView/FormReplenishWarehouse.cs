@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
+using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
 
 namespace ReinforcedConcreteFactoryView
 {
@@ -13,12 +14,14 @@ namespace ReinforcedConcreteFactoryView
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
+        private readonly MainLogic logic;
         private readonly IComponentLogic componentLogic;
         private readonly IWarehouseLogic warehouseLogic;
 
-        public FormReplenishWarehouse(IComponentLogic componenmtLogic, IWarehouseLogic warehouseLogic)
+        public FormReplenishWarehouse(MainLogic logic, IComponentLogic componenmtLogic, IWarehouseLogic warehouseLogic)
         {
             InitializeComponent();
+            this.logic = logic;
             this.componentLogic = componenmtLogic;
             this.warehouseLogic = warehouseLogic;
         }
@@ -80,33 +83,12 @@ namespace ReinforcedConcreteFactoryView
 
             try
             {
-                List<WarehouseComponentBindingModel> warehouseComponentBM = new List<WarehouseComponentBindingModel>();
-
-                WarehouseViewModel warehouse = warehouseLogic.GetElement(Convert.ToInt32(comboBoxWarehouse.SelectedValue));
-
-                for (int i = 0; i < warehouse.WarehouseComponents.Count; ++i)
+                logic.ReplanishWarehouse(new WarehouseComponentBindingModel
                 {
-                    warehouseComponentBM.Add(new WarehouseComponentBindingModel
-                    {
-                        Id = warehouse.WarehouseComponents[i].Id,
-                        WarehouseId = warehouse.WarehouseComponents[i].WarehouseId,
-                        ComponentId = warehouse.WarehouseComponents[i].ComponentId,
-                        Count = warehouse.WarehouseComponents[i].Count
-                    });
-                }
-
-                warehouseComponentBM.Add(new WarehouseComponentBindingModel
-                {
+                    Id = 0,
                     WarehouseId = Convert.ToInt32(comboBoxWarehouse.SelectedValue),
                     ComponentId = Convert.ToInt32(comboBoxComponent.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text)
-                });
-
-                warehouseLogic.UpdElement(new WarehouseBindingModel
-                {
-                    Id = Convert.ToInt32(comboBoxWarehouse.SelectedValue),
-                    WarehouseName = warehouseLogic.GetElement(Convert.ToInt32(comboBoxWarehouse.SelectedValue)).WarehouseName,
-                    WarehouseComponent = warehouseComponentBM
                 });
 
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);

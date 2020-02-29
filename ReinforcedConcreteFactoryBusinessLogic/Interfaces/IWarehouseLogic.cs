@@ -19,5 +19,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
         void UpdElement(WarehouseBindingModel model);
 
         void DelElement(int id);
+
+        void AddComponent(WarehouseComponentBindingModel model);
     }
 }
