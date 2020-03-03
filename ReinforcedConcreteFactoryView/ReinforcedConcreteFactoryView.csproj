@@ -96,8 +96,26 @@
     <Compile Include="FormProducts.Designer.cs">
       <DependentUpon>FormProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReplenishWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReplenishWarehouse.Designer.cs">
+      <DependentUpon>FormReplenishWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouse.Designer.cs">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormWarehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWarehouses.Designer.cs">
+      <DependentUpon>FormWarehouses.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormComponent.resx">
       <DependentUpon>FormComponent.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +136,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProducts.resx">
       <DependentUpon>FormProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReplenishWarehouse.resx">
+      <DependentUpon>FormReplenishWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouse.resx">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWarehouses.resx">
+      <DependentUpon>FormWarehouses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -144,11 +171,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractShopBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
+    <ProjectReference Include="..\ReinforcedConcreteFactoryBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
       <Project>{deae19c7-e6af-445a-85a3-f995a266d7b9}</Project>
       <Name>ReinforcedConcreteFactoryBusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractShopListImplement\ReinforcedConcreteFactoryListImplement.csproj">
+    <ProjectReference Include="..\ReinforcedConcreteFactoryListImplement\ReinforcedConcreteFactoryListImplement.csproj">
       <Project>{ee1e94a6-d477-4591-afc4-a2bf8a55d095}</Project>
       <Name>ReinforcedConcreteFactoryListImplement</Name>
     </ProjectReference>
