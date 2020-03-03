@@ -180,16 +180,6 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
 
         public void AddComponent(WarehouseComponentBindingModel model)
         {
-            int maxWCId = 0;
-
-            for (int i = 0; i < source.WarehouseComponents.Count; ++i)
-            {
-                if (source.WarehouseComponents[i].Id > maxWCId)
-                {
-                    maxWCId = source.WarehouseComponents[i].Id;
-                }
-            }
-
             for (int i = 0; i < source.WarehouseComponents.Count; ++i)
             {
                 if (source.WarehouseComponents[i].WarehouseId == model.WarehouseId &&
@@ -197,7 +187,17 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                 {
                     source.WarehouseComponents[i].Count += model.Count;
                     model.Id = source.WarehouseComponents[i].Id;
-                    break;
+                    return;
+                }
+            }
+
+            int maxWCId = 0;
+
+            for (int i = 0; i < source.WarehouseComponents.Count; ++i)
+            {
+                if (source.WarehouseComponents[i].Id > maxWCId)
+                {
+                    maxWCId = source.WarehouseComponents[i].Id;
                 }
             }
 
