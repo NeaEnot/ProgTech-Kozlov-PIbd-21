@@ -38,8 +38,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             }
             else
             {
-                int maxId = source.Products.Count > 0 ? source.Components.Max(rec =>
-                rec.Id) : 0;
+                int maxId = source.Products.Count > 0 ? source.Components.Max(rec => rec.Id) : 0;
                 element = new Product { Id = maxId + 1 };
                 source.Products.Add(element);
             }
