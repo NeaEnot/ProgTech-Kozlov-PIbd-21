@@ -1,4 +1,5 @@
-﻿using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
+﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -27,12 +28,13 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                var list = logic.GetList();
+                var list = logic.Read(null);
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[3].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -75,7 +77,7 @@ namespace ReinforcedConcreteFactoryView
 
                     try
                     {
-                        logic.DelElement(id);
+                        logic.Delete(new ProductBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

@@ -1,4 +1,5 @@
-﻿using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
+﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -27,7 +28,7 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                var list = logic.GetList();
+                var list = logic.Read(null);
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -75,7 +76,7 @@ namespace ReinforcedConcreteFactoryView
 
                     try
                     {
-                        logic.DelElement(id);
+                        logic.Delete(new ComponentBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

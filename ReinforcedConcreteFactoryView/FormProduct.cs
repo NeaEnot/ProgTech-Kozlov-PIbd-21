@@ -17,7 +17,7 @@ namespace ReinforcedConcreteFactoryView
 
         private readonly IProductLogic logic;
         private int? id;
-        private List<ProductComponentViewModel> productComponents;
+        private Dictionary<int, (string, int)> productComponents;
 
         public FormProduct(IProductLogic service)
         {
@@ -31,7 +31,7 @@ namespace ReinforcedConcreteFactoryView
             {
                 try
                 {
-                    ProductViewModel view = logic.GetElement(id.Value);
+                    ProductViewModel view = logic.Read(new ProductBindingModel { Id = id })?[0];
 
                     if (view != null)
                     {
@@ -48,7 +48,7 @@ namespace ReinforcedConcreteFactoryView
             }
             else
             {
-                productComponents = new List<ProductComponentViewModel>();
+                productComponents = new Dictionary<int, (string, int)>();
             }
         }
 
@@ -58,12 +58,16 @@ namespace ReinforcedConcreteFactoryView
             {
                 if (productComponents != null)
                 {
-                    dataGridView.DataSource = null;
-                    dataGridView.DataSource = productComponents;
+                    dataGridView.Rows.Clear();
+                    dataGridView.ColumnCount = 3;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].HeaderText = "Компонент";
+                    dataGridView.Columns[2].HeaderText = "Количество";
+                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    foreach (var pc in productComponents)
+                    {
+                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
+                    }
                 }
             }
             catch (Exception ex)
@@ -78,14 +82,13 @@ namespace ReinforcedConcreteFactoryView
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (form.ModelView != null)
+                if (productComponents.ContainsKey(form.Id))
                 {
-                    if (id.HasValue)
-                    {
-                        form.ModelView.ProductId = id.Value;
-                    }
-
-                    productComponents.Add(form.ModelView);
+                    productComponents[form.Id] = (form.ComponentName, form.Count);
+                }
+                else
+                {
+                    productComponents.Add(form.Id, (form.ComponentName, form.Count));
                 }
 
                 LoadData();
@@ -97,11 +100,13 @@ namespace ReinforcedConcreteFactoryView
             if (dataGridView.SelectedRows.Count == 1)
             {
                 var form = Container.Resolve<FormProductComponent>();
-                form.ModelView = productComponents[dataGridView.SelectedRows[0].Cells[0].RowIndex];
 
+                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                form.Id = id;
+                form.Count = productComponents[id].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    productComponents[dataGridView.SelectedRows[0].Cells[0].RowIndex] = form.ModelView;
+                    productComponents[form.Id] = (form.ComponentName, form.Count);
                     LoadData();
                 }
             }
@@ -115,7 +120,7 @@ namespace ReinforcedConcreteFactoryView
                 {
                     try
                     {
-                        productComponents.RemoveAt(dataGridView.SelectedRows[0].Cells[0].RowIndex);
+                        productComponents.Remove(dataGridView.SelectedRows[0].Cells[0].RowIndex);
                     }
                     catch (Exception ex)
                     {
@@ -154,38 +159,13 @@ namespace ReinforcedConcreteFactoryView
 
             try
             {
-                List<ProductComponentBindingModel> productComponentBM = new List<ProductComponentBindingModel>();
-
-                for (int i = 0; i < productComponents.Count; ++i)
+                logic.CreateOrUpdate(new ProductBindingModel
                 {
-                    productComponentBM.Add(new ProductComponentBindingModel
-                    {
-                        Id = productComponents[i].Id,
-                        ProductId = productComponents[i].ProductId,
-                        ComponentId = productComponents[i].ComponentId,
-                        Count = productComponents[i].Count
-                    });
-                }
-
-                if (id.HasValue)
-                {
-                    logic.UpdElement(new ProductBindingModel
-                    {
-                        Id = id.Value,
-                        ProductName = textBoxName.Text,
-                        Price = Convert.ToDecimal(textBoxPrice.Text),
-                        ProductComponents = productComponentBM
-                    });
-                }
-                else
-                {
-                    logic.AddElement(new ProductBindingModel
-                    {
-                        ProductName = textBoxName.Text,
-                        Price = Convert.ToDecimal(textBoxPrice.Text),
-                        ProductComponents = productComponentBM
-                    });
-                }
+                    Id = id,
+                    ProductName = textBoxName.Text,
+                    Price = Convert.ToDecimal(textBoxPrice.Text),
+                    ProductComponents = productComponents
+                });
 
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
