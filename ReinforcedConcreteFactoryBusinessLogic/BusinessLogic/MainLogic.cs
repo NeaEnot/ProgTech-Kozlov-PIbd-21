@@ -47,6 +47,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
 
+            warehouseLogic.WriteOffComponents(order);
+
             orderLogic.CreateOrUpdate(new OrderBindingModel
                                             {
                                                 Id = order.Id,

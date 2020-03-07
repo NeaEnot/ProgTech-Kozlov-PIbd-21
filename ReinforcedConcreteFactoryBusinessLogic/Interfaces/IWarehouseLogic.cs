@@ -10,16 +10,14 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
 {
     public interface IWarehouseLogic
     {
-        List<WarehouseViewModel> GetList();
+        List<WarehouseViewModel> Read(WarehouseBindingModel model);
 
-        WarehouseViewModel GetElement(int id);
+        void CreateOrUpdate(WarehouseBindingModel model);
 
-        void AddElement(WarehouseBindingModel model);
-
-        void UpdElement(WarehouseBindingModel model);
-
-        void DelElement(int id);
+        void Delete(WarehouseBindingModel model);
 
         void AddComponent(WarehouseComponentBindingModel model);
+
+        void WriteOffComponents(OrderViewModel model);
     }
 }
