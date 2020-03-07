@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DEAE19C7-E6AF-445A-85A3-F995A266D7B9}</ProjectGuid>
+    <ProjectGuid>{8998A873-8C6D-4A4C-84AE-6D925ADFEDFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReinforcedConcreteFactoryBusinessLogic</RootNamespace>
-    <AssemblyName>ReinforcedConcreteFactoryBusinessLogic</AssemblyName>
+    <RootNamespace>ReinforcedConcreteFactoryFileImplement</RootNamespace>
+    <AssemblyName>ReinforcedConcreteFactoryFileImplement</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,9 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -44,35 +41,23 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Unity.Abstractions, Version=5.11.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.11.3\lib\net46\Unity.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Container, Version=5.11.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.11.3\lib\net46\Unity.Container.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BindingModels\ChangeStatusBindingModel.cs" />
-    <Compile Include="BindingModels\ComponentBindingModel.cs" />
-    <Compile Include="BindingModels\CreateOrderBindingModel.cs" />
-    <Compile Include="BindingModels\OrderBindingModel.cs" />
-    <Compile Include="BindingModels\ProductBindingModel.cs" />
-    <Compile Include="BindingModels\ProductComponentBindingModel.cs" />
-    <Compile Include="BindingModels\WarehouseBindingModel.cs" />
-    <Compile Include="BindingModels\WarehouseComponentBindingModel.cs" />
-    <Compile Include="BusinessLogic\MainLogic.cs" />
-    <Compile Include="Enums\OrderStatus.cs" />
-    <Compile Include="Interfaces\IComponentLogic.cs" />
-    <Compile Include="Interfaces\IOrderLogic.cs" />
-    <Compile Include="Interfaces\IProductLogic.cs" />
-    <Compile Include="Interfaces\IWarehouseLogic.cs" />
+    <Compile Include="FileDataListSingleton.cs" />
+    <Compile Include="Implements\ComponentLogic.cs" />
+    <Compile Include="Implements\OrderLogic.cs" />
+    <Compile Include="Implements\ProductLogic.cs" />
+    <Compile Include="Models\Component.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ComponentViewModel.cs" />
-    <Compile Include="ViewModels\OrderViewModel.cs" />
-    <Compile Include="ViewModels\ProductComponentViewModel.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
-    <Compile Include="ViewModels\WarehouseComponentViewModel.cs" />
-    <Compile Include="ViewModels\WarehouseViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReinforcedConcreteFactoryBusinessLogic\ReinforcedConcreteFactoryBusinessLogic.csproj">
+      <Project>{deae19c7-e6af-445a-85a3-f995a266d7b9}</Project>
+      <Name>ReinforcedConcreteFactoryBusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

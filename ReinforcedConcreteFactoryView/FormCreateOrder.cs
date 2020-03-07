@@ -27,7 +27,7 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                var listP = logicP.GetList();
+                var listP = logicP.Read(null);
 
                 if (listP != null)
                 {
@@ -51,7 +51,7 @@ namespace ReinforcedConcreteFactoryView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                    ProductViewModel product = logicP.GetElement(id);
+                    ProductViewModel product = logicP.Read(new ProductBindingModel { Id = id })?[0];
 
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * product.Price).ToString();

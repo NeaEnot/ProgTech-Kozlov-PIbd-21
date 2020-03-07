@@ -12,7 +12,22 @@ namespace ReinforcedConcreteFactoryView
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
-        public ProductComponentViewModel ModelView { get; set; }
+        public int Id
+        {
+            get { return Convert.ToInt32(comboBoxComponent.SelectedValue); }
+            set { comboBoxComponent.SelectedValue = value; }
+        }
+
+        public string ComponentName { get { return comboBoxComponent.Text; } }
+
+        public int Count
+        {
+            get { return Convert.ToInt32(textBoxCount.Text); }
+            set
+            {
+                textBoxCount.Text = value.ToString();
+            }
+        }
 
         private readonly IComponentLogic logic;
 
@@ -26,7 +41,7 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                List<ComponentViewModel> list = logic.GetList();
+                List<ComponentViewModel> list = logic.Read(null);
                 if (list != null)
                 {
                     comboBoxComponent.DisplayMember = "ComponentName";
@@ -38,13 +53,6 @@ namespace ReinforcedConcreteFactoryView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (ModelView != null)
-            {
-                comboBoxComponent.Enabled = false;
-                comboBoxComponent.SelectedValue = ModelView.ComponentId;
-                textBoxCount.Text = ModelView.Count.ToString();
             }
         }
 
@@ -62,31 +70,10 @@ namespace ReinforcedConcreteFactoryView
                 return;
             }
 
-            try
-            {
-                if (ModelView == null)
-                {
-                    ModelView = new ProductComponentViewModel
-                    {
-                        ComponentId = Convert.ToInt32(comboBoxComponent.SelectedValue),
-                        ComponentName = comboBoxComponent.Text,
-                        Count = Convert.ToInt32(textBoxCount.Text)
-                    };
-                }
-                else
-                {
-                    ModelView.Count = Convert.ToInt32(textBoxCount.Text);
-                }
+            MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
 
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

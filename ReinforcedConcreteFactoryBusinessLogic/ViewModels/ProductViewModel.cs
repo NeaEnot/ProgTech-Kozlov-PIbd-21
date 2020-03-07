@@ -15,6 +15,6 @@ namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
         [DisplayName("Цена")]
         public decimal Price { get; set; }
 
-        public List<ProductComponentViewModel> ProductComponents { get; set; }
+        public Dictionary<int, (string, int)> ProductComponents { get; set; }
     }
 }
