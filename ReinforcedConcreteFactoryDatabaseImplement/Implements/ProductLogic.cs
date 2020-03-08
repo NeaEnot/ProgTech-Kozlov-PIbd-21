@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
@@ -134,10 +132,11 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     ProductName = rec.ProductName,
                     Price = rec.Price,
                     ProductComponents = context.ProductComponents
-                .Include(recPC => recPC.Component)
-                .Where(recPC => recPC.ProductId == rec.Id)
-                .ToDictionary(recPC => recPC.ComponentId, recPC =>
-                (recPC.Component?.ComponentName, recPC.Count))
+                                                .Include(recPC => recPC.Component)
+                                                .Where(recPC => recPC.ProductId == rec.Id)
+                                                .ToDictionary(recPC => recPC.ComponentId, recPC => (
+                                                    recPC.Component?.ComponentName, recPC.Count
+                                                ))
                 })
                 .ToList();
             }

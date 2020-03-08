@@ -8,17 +8,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 {
-    public class Component
+    public class Warehouse
     {
         public int Id { get; set; }
 
         [Required]
-        public string ComponentName { get; set; }
+        public string WarehouseName { get; set; }
 
-        [ForeignKey("ComponentId")]
-        public virtual List<ProductComponent> ProductComponents { get; set; }
-
-        [ForeignKey("ComponentId")]
-        public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
+        public virtual WarehouseComponent WarehouseComponent { get; set; }
     }
 }
