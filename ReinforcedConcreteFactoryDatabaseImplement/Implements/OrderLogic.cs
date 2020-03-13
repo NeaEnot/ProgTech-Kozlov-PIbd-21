@@ -34,6 +34,13 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
 
+                element.ProductId = model.ProductId == 0 ? element.ProductId : model.ProductId;
+                element.Count = model.Count;
+                element.Sum = model.Sum;
+                element.Status = model.Status;
+                element.DateCreate = model.DateCreate;
+                element.DateImplement = model.DateImplement;
+
                 context.SaveChanges();
             }
         }
@@ -67,7 +74,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 {
                     Id = rec.Id,
                     ProductId = rec.ProductId,
-                    ProductName = rec.Product.ProductName,
+                    ProductName = GetProductName(rec.ProductId),
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
@@ -75,6 +82,19 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     DateImplement = rec.DateImplement
                 })
                 .ToList();
+            }
+        }
+
+        private string GetProductName(int id)
+        {
+            using (var context = new ReinforcedConcreteFactoryDatabase())
+            {
+                string name = "";
+                var product = context.Products.FirstOrDefault(x => x.Id == id);
+
+                name = product != null ? product.ProductName : "";
+
+                return name;
             }
         }
     }

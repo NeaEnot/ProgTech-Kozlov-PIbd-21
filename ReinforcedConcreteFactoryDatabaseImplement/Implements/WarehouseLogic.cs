@@ -80,7 +80,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
                 WarehouseComponent element = 
-                    context.WarehouseComponents.FirstOrDefault(rec => rec.WarehouseId == model.WarehouseId && rec.ComponentId != model.ComponentId);
+                    context.WarehouseComponents.FirstOrDefault(rec => rec.WarehouseId == model.WarehouseId && rec.ComponentId == model.ComponentId);
 
                 if (element != null)
                 {
@@ -88,16 +88,15 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 }
                 else
                 {
-                    element = new WarehouseComponent
-                    {
-                        Id = context.WarehouseComponents.Max(rec => rec.Id) + 1,
-                        WarehouseId = model.WarehouseId,
-                        ComponentId = model.ComponentId,
-                        Count = model.Count
-                    };
+
+                    element = new WarehouseComponent();
 
                     context.WarehouseComponents.Add(element);
                 }
+
+                element.WarehouseId = model.WarehouseId;
+                element.ComponentId = model.ComponentId;
+                element.Count = model.Count;
 
                 context.SaveChanges();
             }
@@ -138,8 +137,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                         foreach (var pc in productComponents)
                         {
                             var warehouseComponent = context.WarehouseComponents.Where(rec => rec.ComponentId == pc.ComponentId);
-                            int sum = warehouseComponent.Sum(rec => rec.Count);
-                            int neededCount = pc.Count;
+                            int neededCount = pc.Count * model.Count;
 
                             foreach (var wc in warehouseComponent)
                             {
@@ -158,7 +156,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
 
                             if (neededCount > 0)
                             {
-                                throw new Exception("На складах не достаточно компонентов");
+                                throw new Exception("На складах недостаточно компонентов");
                             }
 
                         }

@@ -169,6 +169,14 @@
     <Compile Include="Migrations\20200305150918_InitialCreate.designer.cs">
       <DependentUpon>20200305150918_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200313123004_Test.cs" />
+    <Compile Include="Migrations\20200313123004_Test.designer.cs">
+      <DependentUpon>20200313123004_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200313123647_Corrections2.cs" />
+    <Compile Include="Migrations\20200313123647_Corrections2.designer.cs">
+      <DependentUpon>20200313123647_Corrections2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ReinforcedConcreteFactoryDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Order.cs" />
