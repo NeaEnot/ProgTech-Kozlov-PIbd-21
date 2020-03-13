@@ -97,13 +97,12 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
                 ProductName = rec.ProductName,
                 Price = rec.Price,
                 ProductComponents = source.ProductComponents
-                                    .Where(recPC => recPC.ProductId == rec.Id)
-                                    .ToDictionary(
-                                        recPC => recPC.ComponentId, 
-                                        recPC =>(
-                                            source.Components.FirstOrDefault(recC => recC.Id == recPC.ComponentId)?.ComponentName, recPC.Count
-                                            )
-                                        )
+                    .Where(recPC => recPC.ProductId == rec.Id)
+                    .ToDictionary(
+                        recPC => recPC.ComponentId, recPC =>(
+                            source.Components.FirstOrDefault(recC => recC.Id == recPC.ComponentId)?.ComponentName, recPC.Count
+                        )
+                    )
             })
             .ToList();
         }

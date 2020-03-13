@@ -168,6 +168,10 @@
     <Compile Include="Migrations\20200305150918_InitialCreate.designer.cs">
       <DependentUpon>20200305150918_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200313112604_ProductCorrections1.cs" />
+    <Compile Include="Migrations\20200313112604_ProductCorrections1.designer.cs">
+      <DependentUpon>20200313112604_ProductCorrections1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ReinforcedConcreteFactoryDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Order.cs" />
