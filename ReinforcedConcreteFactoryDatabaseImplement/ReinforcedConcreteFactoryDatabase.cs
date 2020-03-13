@@ -16,8 +16,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement
             {
                 optionsBuilder
                     .UseSqlServer(
-                        @"Data Source=DESKTOP-CC2VPVP\SQLEXPRESS;
-                          Initial Catalog=ReinforcedConcreteFactoryDatabase;
+                        @"Data Source=HOME\SQLEXPRESS;
+                          InitialCatalog=ReinforcedConcreteFactoryDatabase;
                           Integrated Security=True;
                           MultipleActiveResultSets=True;");
             }
@@ -31,5 +31,9 @@ namespace ReinforcedConcreteFactoryDatabaseImplement
         public virtual DbSet<ProductComponent> ProductComponents { set; get; }
 
         public virtual DbSet<Order> Orders { set; get; }
+
+        public virtual DbSet<Warehouse> Warehouses { set; get; }
+
+        public virtual DbSet<WarehouseComponent> WarehouseComponents { set; get; }
     }
 }

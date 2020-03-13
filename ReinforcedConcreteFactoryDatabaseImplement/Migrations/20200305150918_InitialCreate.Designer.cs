@@ -10,8 +10,8 @@ using ReinforcedConcreteFactoryDatabaseImplement;
 namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 {
     [DbContext(typeof(ReinforcedConcreteFactoryDatabase))]
-    [Migration("20200313112604_ProductCorrections1")]
-    partial class ProductCorrections1
+    [Migration("20200305150918_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,7 +108,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 
                     b.HasIndex("ComponentId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("ProductComponents");
                 });
@@ -131,8 +132,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Product", "Product")
-                        .WithMany("ProductComponents")
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProductComponent")
+                        .HasForeignKey("ReinforcedConcreteFactoryDatabaseImplement.Models.ProductComponent", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

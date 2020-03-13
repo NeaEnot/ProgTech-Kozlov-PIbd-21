@@ -137,7 +137,7 @@ namespace ReinforcedConcreteFactoryView
             LoadData();
         }
 
-        private void ПополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonReplenishWarehouse_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReplenishWarehouse>();
             form.ShowDialog();

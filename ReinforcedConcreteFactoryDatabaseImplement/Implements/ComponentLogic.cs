@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
@@ -11,17 +10,22 @@ using ReinforcedConcreteFactoryDatabaseImplement.Models;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
 {
-    public class OrderLogic : IOrderLogic
+    public class ComponentLogic : IComponentLogic
     {
-        public void CreateOrUpdate(OrderBindingModel model)
+        public void CreateOrUpdate(ComponentBindingModel model)
         {
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
-                Order element;
+                Component element = context.Components.FirstOrDefault(rec => rec.ComponentName == model.ComponentName && rec.Id != model.Id);
+
+                if (element != null)
+                {
+                    throw new Exception("Уже есть компонент с таким названием");
+                }
 
                 if (model.Id.HasValue)
                 {
-                    element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                    element = context.Components.FirstOrDefault(rec => rec.Id == model.Id);
 
                     if (element == null)
                     {
@@ -30,23 +34,25 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 }
                 else
                 {
-                    element = new Order();
-                    context.Orders.Add(element);
+                    element = new Component();
+                    context.Components.Add(element);
                 }
+
+                element.ComponentName = model.ComponentName;
 
                 context.SaveChanges();
             }
         }
 
-        public void Delete(OrderBindingModel model)
+        public void Delete(ComponentBindingModel model)
         {
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
-                Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                Component element = context.Components.FirstOrDefault(rec => rec.Id == model.Id);
 
                 if (element != null)
                 {
-                    context.Orders.Remove(element);
+                    context.Components.Remove(element);
                     context.SaveChanges();
                 }
                 else
@@ -56,23 +62,16 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             }
         }
 
-        public List<OrderViewModel> Read(OrderBindingModel model)
+        public List<ComponentViewModel> Read(ComponentBindingModel model)
         {
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
-                return context.Orders
+                return context.Components
                 .Where(rec => model == null || rec.Id == model.Id)
-                .ToList()
-                .Select(rec => new OrderViewModel
+                .Select(rec => new ComponentViewModel
                 {
                     Id = rec.Id,
-                    ProductId = rec.ProductId,
-                    ProductName = rec.Product.ProductName,
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement
+                    ComponentName = rec.ComponentName
                 })
                 .ToList();
             }

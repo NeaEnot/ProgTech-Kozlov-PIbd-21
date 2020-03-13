@@ -4,21 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 {
-    public class Product
+    public class Warehouse
     {
         public int Id { get; set; }
 
         [Required]
-        public string ProductName { get; set; }
+        public string WarehouseName { get; set; }
 
-        [Required]
-        public decimal Price { get; set; }
-
-        public virtual ProductComponent ProductComponent { get; set; }
-
-        public virtual List<Order> Orders { get; set; }
+        public virtual WarehouseComponent WarehouseComponent { get; set; }
     }
 }

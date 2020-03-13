@@ -90,8 +90,8 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.2\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Identity.Client, Version=4.8.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Identity.Client.4.8.2\lib\net45\Microsoft.Identity.Client.dll</HintPath>
+    <Reference Include="Microsoft.Identity.Client, Version=4.9.0.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Identity.Client.4.9.0\lib\net45\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.6.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
@@ -164,19 +164,18 @@
     <Compile Include="Implements\ComponentLogic.cs" />
     <Compile Include="Implements\OrderLogic.cs" />
     <Compile Include="Implements\ProductLogic.cs" />
+    <Compile Include="Implements\WarehouseLogic.cs" />
     <Compile Include="Migrations\20200305150918_InitialCreate.cs" />
     <Compile Include="Migrations\20200305150918_InitialCreate.designer.cs">
       <DependentUpon>20200305150918_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20200313112604_ProductCorrections1.cs" />
-    <Compile Include="Migrations\20200313112604_ProductCorrections1.designer.cs">
-      <DependentUpon>20200313112604_ProductCorrections1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ReinforcedConcreteFactoryDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComponent.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\WarehouseComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReinforcedConcreteFactoryDatabase.cs" />
   </ItemGroup>

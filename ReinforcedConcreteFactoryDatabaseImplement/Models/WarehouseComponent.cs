@@ -7,18 +7,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 {
-    public class Product
+    public class WarehouseComponent
     {
         public int Id { get; set; }
 
-        [Required]
-        public string ProductName { get; set; }
+        public int WarehouseId { get; set; }
+
+        public int ComponentId { get; set; }
 
         [Required]
-        public decimal Price { get; set; }
+        public int Count { get; set; }
 
-        public virtual ProductComponent ProductComponent { get; set; }
+        public virtual Component Component { get; set; }
 
-        public virtual List<Order> Orders { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

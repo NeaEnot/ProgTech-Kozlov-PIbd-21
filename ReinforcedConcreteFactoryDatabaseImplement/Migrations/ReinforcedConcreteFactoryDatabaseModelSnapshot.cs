@@ -106,7 +106,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 
                     b.HasIndex("ComponentId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("ProductComponents");
                 });
@@ -129,8 +130,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Product", "Product")
-                        .WithMany("ProductComponents")
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProductComponent")
+                        .HasForeignKey("ReinforcedConcreteFactoryDatabaseImplement.Models.ProductComponent", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
