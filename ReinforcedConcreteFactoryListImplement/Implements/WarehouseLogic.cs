@@ -164,6 +164,12 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             };
         }
 
+        public bool AreComponentsEnough(OrderViewModel model)
+        {
+            // Заглушка
+            return true;
+        }
+
         public void WriteOffComponents(OrderViewModel model)
         {
             // Заглушка
