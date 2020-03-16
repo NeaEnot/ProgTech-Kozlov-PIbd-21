@@ -16,7 +16,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement
             {
                 optionsBuilder
                     .UseSqlServer(
-                        @"Data Source=DESKTOP-CC2VPVP\SQLEXPRESS;
+                        @"Data Source=DESKTOP-S65O0I4\SQLEXPRESS;
                           Initial Catalog=ReinforcedConcreteFactoryDatabase;
                           Integrated Security=True;
                           MultipleActiveResultSets=True;");
