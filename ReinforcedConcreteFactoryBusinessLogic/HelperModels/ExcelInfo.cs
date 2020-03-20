@@ -9,6 +9,6 @@ namespace ReinforcedConcreteFactoryBusinessLogic.HelperModels
 
         public string Title { get; set; }
 
-        public List<ReportProductComponentViewModel> ProductComponents { get; set; }
+        public List<ReportOrdersViewModel> Orders { get; set; }
     }
 }

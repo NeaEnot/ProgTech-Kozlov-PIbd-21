@@ -27,11 +27,22 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                     }
                 }));
 
-                foreach (var component in info.Components)
+                foreach (var product in info.Products)
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<string> { component.ComponentName },
+                        Texts = new List<string> { product.ProductName },
+                        TextProperties = new WordParagraphProperties
+                        {
+                            Bold = true,
+                            Size = "24",
+                            JustificationValues = JustificationValues.Both
+                        }
+                    }));
+
+                    docBody.AppendChild(CreateParagraph(new WordParagraph
+                    {
+                        Texts = new List<string> { product.Price.ToString() },
                         TextProperties = new WordParagraphProperties
                         {
                             Size = "24",

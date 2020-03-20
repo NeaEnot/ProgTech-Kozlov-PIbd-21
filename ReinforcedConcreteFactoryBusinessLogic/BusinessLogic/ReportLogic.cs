@@ -73,8 +73,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
-                Components = componentLogic.Read(null)
+                Title = "Список изделий",
+                Products = productLogic.Read(null)
             });
         }
 
@@ -83,7 +83,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
+                Title = "Список заказов",
                 ProductComponents = GetProductComponent()
             });
         }
