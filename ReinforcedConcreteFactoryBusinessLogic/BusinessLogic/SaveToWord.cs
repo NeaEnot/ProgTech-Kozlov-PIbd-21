@@ -31,20 +31,10 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
-                        Texts = new List<string> { product.ProductName },
+                        Texts = new List<string> { product.ProductName, " - " + product.Price.ToString() },
                         TextProperties = new WordParagraphProperties
                         {
                             Bold = true,
-                            Size = "24",
-                            JustificationValues = JustificationValues.Both
-                        }
-                    }));
-
-                    docBody.AppendChild(CreateParagraph(new WordParagraph
-                    {
-                        Texts = new List<string> { product.Price.ToString() },
-                        TextProperties = new WordParagraphProperties
-                        {
                             Size = "24",
                             JustificationValues = JustificationValues.Both
                         }
@@ -80,7 +70,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                     RunProperties properties = new RunProperties();
                     properties.AppendChild(new FontSize { Val = paragraph.TextProperties.Size });
 
-                    if (paragraph.TextProperties.Bold)
+                    if (!run.StartsWith(" - ") && paragraph.TextProperties.Bold)
                     {
                         properties.AppendChild(new Bold());
                     }

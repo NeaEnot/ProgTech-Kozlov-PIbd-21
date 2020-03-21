@@ -15,17 +15,12 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
 
             Section section = document.AddSection();
             Paragraph paragraph = section.AddParagraph(info.Title);
-
             paragraph.Format.SpaceAfter = "1cm";
             paragraph.Format.Alignment = ParagraphAlignment.Center;
             paragraph.Style = "NormalTitle";
-            paragraph = section.AddParagraph($"с {info.DateFrom.ToShortDateString()} по { info.DateTo.ToShortDateString()} ");
-            paragraph.Format.SpaceAfter = "1cm";
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
-            paragraph.Style = "Normal";
 
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "3cm", "6cm", "3cm", "2cm", "3cm" };
+            List<string> columns = new List<string> { "8cm", "6cm", "3cm" };
 
             foreach (var elem in columns)
             {
@@ -35,23 +30,21 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             CreateRow(new PdfRowParameters
             {
                 Table = table,
-                Texts = new List<string> { "Дата заказа", "Изделие", "Количество", "Сумма", "Статус" },
+                Texts = new List<string> { "Изделие", "Компонент", "Количество" },
                 Style = "NormalTitle",
                 ParagraphAlignment = ParagraphAlignment.Center
             });
 
-            foreach (var order in info.Orders)
+            foreach (var pc in info.ProductComponents)
             {
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
                     Texts = new List<string>
                     {
-                        order.DateCreate.ToShortDateString(),
-                        order.ProductName,
-                        order.Count.ToString(),
-                        order.Sum.ToString(),
-                        order.Status.ToString()
+                        pc.ProductName,
+                        pc.ComponentName,
+                        pc.Count.ToString()
                     },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left

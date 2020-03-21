@@ -27,25 +27,22 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             var products = productLogic.Read(null);
             var list = new List<ReportProductComponentViewModel>();
 
-            foreach (var component in components)
+            foreach (var product in products)
             {
-                var record = new ReportProductComponentViewModel
-                {
-                    ComponentName = component.ComponentName,
-                    Products = new List<Tuple<string, int>>(),
-                    TotalCount = 0
-                };
-
-                foreach (var product in products)
+                foreach (var component in components)
                 {
                     if (product.ProductComponents.ContainsKey(component.Id))
                     {
-                        record.Products.Add(new Tuple<string, int>(product.ProductName,
-                        product.ProductComponents[component.Id].Item2));
-                        record.TotalCount += product.ProductComponents[component.Id].Item2;
+                        var record = new ReportProductComponentViewModel
+                        {
+                            ProductName = product.ProductName,
+                            ComponentName = component.ComponentName,
+                            Count = product.ProductComponents[component.Id].Item2
+                        };
+
+                        list.Add(record);
                     }
                 }
-                list.Add(record);
             }
             return list;
         }
@@ -68,7 +65,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             .ToList();
         }
 
-        public void SaveComponentsToWordFile(ReportBindingModel model)
+        public void SaveProductsToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
             {
@@ -78,25 +75,25 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             });
         }
 
-        public void SaveProductComponentToExcelFile(ReportBindingModel model)
+        public void SaveOrdersToExcelFile(ReportBindingModel model)
         {
+            var a = GetOrders(model);
+
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
                 Title = "Список заказов",
-                ProductComponents = GetProductComponent()
+                Orders = GetOrders(model)
             });
         }
 
-        public void SaveOrdersToPdfFile(ReportBindingModel model)
+        public void SaveProductComponentsToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список заказов",
-                DateFrom = model.DateFrom.Value,
-                DateTo = model.DateTo.Value,
-                Orders = GetOrders(model)
+                Title = "Список издлий с компонентами",
+                ProductComponents = GetProductComponent()
             });
         }
     }

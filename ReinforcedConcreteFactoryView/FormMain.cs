@@ -140,11 +140,10 @@ namespace ReinforcedConcreteFactoryView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    reportLogic.SaveComponentsToWordFile(new ReportBindingModel { FileName = dialog.FileName });
+                    reportLogic.SaveProductsToWordFile(new ReportBindingModel { FileName = dialog.FileName });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
         }
 
         private void компонентыПоИзделиямToolStripMenuItem_Click(object sender, EventArgs e)

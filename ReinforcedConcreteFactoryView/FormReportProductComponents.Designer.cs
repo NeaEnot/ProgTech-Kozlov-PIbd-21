@@ -28,73 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ButtonSaveToExcel = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.ColumnComponent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ButtonToPdf = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ButtonSaveToExcel
+            // reportViewer
             // 
-            this.ButtonSaveToExcel.Location = new System.Drawing.Point(20, 18);
-            this.ButtonSaveToExcel.Name = "ButtonSaveToExcel";
-            this.ButtonSaveToExcel.Size = new System.Drawing.Size(173, 36);
-            this.ButtonSaveToExcel.TabIndex = 0;
-            this.ButtonSaveToExcel.Text = "Сохранить в Exel";
-            this.ButtonSaveToExcel.UseVisualStyleBackColor = true;
-            this.ButtonSaveToExcel.Click += new System.EventHandler(this.ButtonSaveToExcel_Click);
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "ReinforcedConcreteFactoryView.ReportOrders.rdlc";
+            this.reportViewer.Location = new System.Drawing.Point(3, 50);
+            this.reportViewer.Name = "reportViewer";
+            this.reportViewer.ServerReport.BearerToken = null;
+            this.reportViewer.Size = new System.Drawing.Size(1033, 535);
+            this.reportViewer.TabIndex = 1;
+            this.reportViewer.Load += new System.EventHandler(this.reportViewer_Load);
             // 
-            // dataGridView
+            // ButtonToPdf
             // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnComponent,
-            this.ColumnProduct,
-            this.ColumnCount});
-            this.dataGridView.Location = new System.Drawing.Point(11, 70);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 28;
-            this.dataGridView.Size = new System.Drawing.Size(793, 460);
-            this.dataGridView.TabIndex = 1;
-            // 
-            // ColumnComponent
-            // 
-            this.ColumnComponent.HeaderText = "Компонент";
-            this.ColumnComponent.Name = "ColumnComponent";
-            // 
-            // ColumnProduct
-            // 
-            this.ColumnProduct.HeaderText = "Изделие";
-            this.ColumnProduct.Name = "ColumnProduct";
-            // 
-            // ColumnCount
-            // 
-            this.ColumnCount.HeaderText = "Количество";
-            this.ColumnCount.Name = "ColumnCount";
+            this.ButtonToPdf.Location = new System.Drawing.Point(12, 12);
+            this.ButtonToPdf.Name = "ButtonToPdf";
+            this.ButtonToPdf.Size = new System.Drawing.Size(137, 23);
+            this.ButtonToPdf.TabIndex = 6;
+            this.ButtonToPdf.Text = "В PDF";
+            this.ButtonToPdf.UseVisualStyleBackColor = true;
+            this.ButtonToPdf.Click += new System.EventHandler(this.ButtonToPdf_Click);
             // 
             // FormReportProductComponents
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 542);
-            this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.ButtonSaveToExcel);
+            this.ClientSize = new System.Drawing.Size(1041, 588);
+            this.Controls.Add(this.ButtonToPdf);
+            this.Controls.Add(this.reportViewer);
             this.Name = "FormReportProductComponents";
-            this.Text = "Компоненты по изделиям";
-            this.Load += new System.EventHandler(this.FormReportProductComponents_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.Text = "FormReportOrders";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button ButtonSaveToExcel;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnComponent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.Button ButtonToPdf;
     }
 }

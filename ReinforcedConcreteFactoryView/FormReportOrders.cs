@@ -1,7 +1,8 @@
-﻿using Microsoft.Reporting.WinForms;
-using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+﻿using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Unity;
 
@@ -20,6 +21,34 @@ namespace ReinforcedConcreteFactoryView
             this.logic = logic;
         }
 
+        private void ButtonSaveToExcel_Click(object sender, EventArgs e)
+        {
+            if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
+            {
+                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        logic.SaveOrdersToExcelFile(new ReportBindingModel { FileName = dialog.FileName, DateFrom = dateTimePickerFrom.Value.Date, DateTo = dateTimePickerTo.Value.Date });
+
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         private void ButtonMake_Click(object sender, EventArgs e)
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
@@ -30,48 +59,40 @@ namespace ReinforcedConcreteFactoryView
 
             try
             {
-                ReportParameter parameter = new ReportParameter("ReportParameterPeriod", "c " + dateTimePickerFrom.Value.ToShortDateString() + " по " + dateTimePickerTo.Value.ToShortDateString());
-                reportViewer.LocalReport.SetParameters(parameter);
-                var dataSource = logic.GetOrders(new ReportBindingModel { DateFrom = dateTimePickerFrom.Value, DateTo = dateTimePickerTo.Value });
-                ReportDataSource source = new ReportDataSource("DataSetOrders", dataSource);
-                reportViewer.LocalReport.DataSources.Add(source);
-                reportViewer.RefreshReport();
+                var dict = logic.GetOrders(new ReportBindingModel { DateFrom = dateTimePickerFrom.Value.Date, DateTo = dateTimePickerTo.Value.Date });
+                List<DateTime> dates = new List<DateTime>();
+                foreach (var order in dict)
+                {
+                    if (!dates.Contains(order.DateCreate.Date))
+                    {
+                        dates.Add(order.DateCreate.Date);
+                    }
+                }
+
+                if (dict != null)
+                {
+                    dataGridView.Rows.Clear();
+
+                    foreach (var date in dates)
+                    {
+                        decimal dateSum = 0;
+
+                        dataGridView.Rows.Add(new object[] { date.Date, "", "" });
+
+                        foreach (var order in dict.Where(rec => rec.DateCreate.Date == date.Date))
+                        {
+                            dataGridView.Rows.Add(new object[] { "", order.ProductName, order.Sum });
+                            dateSum += order.Sum;
+                        }
+
+                        dataGridView.Rows.Add(new object[] { "Итого", "", dateSum });
+                        dataGridView.Rows.Add(new object[] { });
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
-            }
-        }
-
-        private void ButtonToPdf_Click(object sender, EventArgs e)
-        {
-            if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
-            {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
-            {
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    try
-                    {
-                        logic.SaveOrdersToPdfFile(new ReportBindingModel
-                        {
-                            FileName = dialog.FileName,
-                            DateFrom = dateTimePickerFrom.Value,
-                            DateTo = dateTimePickerTo.Value
-                        });
-
-                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

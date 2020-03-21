@@ -28,115 +28,133 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ButtonToPdf = new System.Windows.Forms.Button();
+            this.ButtonSaveToExcel = new System.Windows.Forms.Button();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonMake = new System.Windows.Forms.Button();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // ButtonSaveToExcel
             // 
-            this.panel1.Controls.Add(this.ButtonToPdf);
-            this.panel1.Controls.Add(this.ButtonMake);
-            this.panel1.Controls.Add(this.dateTimePickerTo);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.dateTimePickerFrom);
-            this.panel1.Location = new System.Drawing.Point(2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1035, 45);
-            this.panel1.TabIndex = 0;
+            this.ButtonSaveToExcel.Location = new System.Drawing.Point(423, 6);
+            this.ButtonSaveToExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonSaveToExcel.Name = "ButtonSaveToExcel";
+            this.ButtonSaveToExcel.Size = new System.Drawing.Size(113, 23);
+            this.ButtonSaveToExcel.TabIndex = 0;
+            this.ButtonSaveToExcel.Text = "Сохранить в Exel";
+            this.ButtonSaveToExcel.UseVisualStyleBackColor = true;
+            this.ButtonSaveToExcel.Click += new System.EventHandler(this.ButtonSaveToExcel_Click);
             // 
-            // ButtonToPdf
+            // dataGridView
             // 
-            this.ButtonToPdf.Location = new System.Drawing.Point(814, 7);
-            this.ButtonToPdf.Name = "ButtonToPdf";
-            this.ButtonToPdf.Size = new System.Drawing.Size(137, 23);
-            this.ButtonToPdf.TabIndex = 5;
-            this.ButtonToPdf.Text = "В PDF";
-            this.ButtonToPdf.UseVisualStyleBackColor = true;
-            this.ButtonToPdf.Click += new System.EventHandler(this.ButtonToPdf_Click);
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Date,
+            this.ProductName,
+            this.Price});
+            this.dataGridView.Location = new System.Drawing.Point(7, 45);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowTemplate.Height = 28;
+            this.dataGridView.Size = new System.Drawing.Size(529, 299);
+            this.dataGridView.TabIndex = 1;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "Дата";
+            this.Date.Name = "Date";
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Заказ";
+            this.ProductName.Name = "ProductName";
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Цена";
+            this.Price.Name = "Price";
             // 
             // ButtonMake
             // 
-            this.ButtonMake.Location = new System.Drawing.Point(440, 7);
+            this.ButtonMake.Location = new System.Drawing.Point(315, 7);
             this.ButtonMake.Name = "ButtonMake";
-            this.ButtonMake.Size = new System.Drawing.Size(142, 23);
-            this.ButtonMake.TabIndex = 4;
+            this.ButtonMake.Size = new System.Drawing.Size(103, 23);
+            this.ButtonMake.TabIndex = 9;
             this.ButtonMake.Text = "Сформировать";
             this.ButtonMake.UseVisualStyleBackColor = true;
             this.ButtonMake.Click += new System.EventHandler(this.ButtonMake_Click);
             // 
             // dateTimePickerTo
             // 
-            this.dateTimePickerTo.Location = new System.Drawing.Point(232, 9);
+            this.dateTimePickerTo.Location = new System.Drawing.Point(187, 10);
             this.dateTimePickerTo.Name = "dateTimePickerTo";
-            this.dateTimePickerTo.Size = new System.Drawing.Size(143, 20);
-            this.dateTimePickerTo.TabIndex = 3;
+            this.dateTimePickerTo.Size = new System.Drawing.Size(122, 20);
+            this.dateTimePickerTo.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(207, 16);
+            this.label2.Location = new System.Drawing.Point(162, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 13);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 7;
             this.label2.Text = "по";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 16);
+            this.label1.Location = new System.Drawing.Point(4, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 6;
             this.label1.Text = "С";
             // 
             // dateTimePickerFrom
             // 
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(37, 10);
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(34, 10);
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
-            this.dateTimePickerFrom.Size = new System.Drawing.Size(154, 20);
-            this.dateTimePickerFrom.TabIndex = 0;
-            // 
-            // reportViewer
-            // 
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "ReinforcedConcreteFactoryView.ReportOrders.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(3, 50);
-            this.reportViewer.Name = "reportViewer";
-            this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(1033, 535);
-            this.reportViewer.TabIndex = 1;
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(122, 20);
+            this.dateTimePickerFrom.TabIndex = 5;
             // 
             // FormReportOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 588);
-            this.Controls.Add(this.reportViewer);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(549, 352);
+            this.Controls.Add(this.ButtonMake);
+            this.Controls.Add(this.dateTimePickerTo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dateTimePickerFrom);
+            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.ButtonSaveToExcel);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormReportOrders";
-            this.Text = "FormReportOrders";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Text = "Заказы";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button ButtonToPdf;
+        private System.Windows.Forms.Button ButtonSaveToExcel;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.Button ButtonMake;
         private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
     }
 }
