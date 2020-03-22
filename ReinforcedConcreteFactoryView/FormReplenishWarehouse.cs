@@ -30,7 +30,7 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                List<ComponentViewModel> list = componentLogic.GetList();
+                List<ComponentViewModel> list = componentLogic.Read(null);
                 if (list != null)
                 {
                     comboBoxComponent.DisplayMember = "ComponentName";
@@ -46,7 +46,7 @@ namespace ReinforcedConcreteFactoryView
 
             try
             {
-                List<WarehouseViewModel> list = warehouseLogic.GetList();
+                List<WarehouseViewModel> list = warehouseLogic.Read(null);
                 if (list != null)
                 {
                     comboBoxWarehouse.DisplayMember = "WarehouseName";

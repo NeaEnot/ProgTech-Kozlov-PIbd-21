@@ -17,7 +17,7 @@ namespace ReinforcedConcreteFactoryView
 
         private readonly IWarehouseLogic logic;
         private int? id;
-        private List<WarehouseComponentViewModel> warehouseComponents;
+        private Dictionary<int, (string, int)> warehouseComponents;
 
         public FormWarehouse(IWarehouseLogic logic)
         {
@@ -31,7 +31,7 @@ namespace ReinforcedConcreteFactoryView
             {
                 try
                 {
-                    WarehouseViewModel view = logic.GetElement(id.Value);
+                    WarehouseViewModel view = logic.Read(new WarehouseBindingModel { Id = id })?[0];
                     if (view != null)
                     {
                         textBoxName.Text = view.WarehouseName;
@@ -46,7 +46,7 @@ namespace ReinforcedConcreteFactoryView
             }
             else
             {
-                warehouseComponents = new List<WarehouseComponentViewModel>();
+                warehouseComponents = new Dictionary<int, (string, int)>();
             }
         }
 
@@ -56,12 +56,16 @@ namespace ReinforcedConcreteFactoryView
             {
                 if (warehouseComponents != null)
                 {
-                    dataGridView.DataSource = null;
-                    dataGridView.DataSource = warehouseComponents;
+                    dataGridView.Rows.Clear();
+                    dataGridView.ColumnCount = 3;
                     dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[1].HeaderText = "Компонент";
+                    dataGridView.Columns[2].HeaderText = "Количество";
+                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    foreach (var wc in warehouseComponents)
+                    {
+                        dataGridView.Rows.Add(new object[] { wc.Key, wc.Value.Item1, wc.Value.Item2 });
+                    }
                 }
             }
             catch (Exception ex)
@@ -80,15 +84,12 @@ namespace ReinforcedConcreteFactoryView
 
             try
             {
-                if (id.HasValue)
+                logic.CreateOrUpdate(new WarehouseBindingModel
                 {
-                    logic.UpdElement(new WarehouseBindingModel { Id = id.Value, WarehouseName = textBoxName.Text });
-                }
-                else
-                {
-                    logic.AddElement(new WarehouseBindingModel { WarehouseName = textBoxName.Text });
-                }
-                
+                    Id = id,
+                    WarehouseName = textBoxName.Text
+                });
+
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();

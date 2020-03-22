@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE1E94A6-D477-4591-AFC4-A2BF8A55D095}</ProjectGuid>
+    <ProjectGuid>{8998A873-8C6D-4A4C-84AE-6D925ADFEDFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReinforcedConcreteFactoryListImplement</RootNamespace>
-    <AssemblyName>ReinforcedConcreteFactoryListImplement</AssemblyName>
+    <RootNamespace>ReinforcedConcreteFactoryFileImplement</RootNamespace>
+    <AssemblyName>ReinforcedConcreteFactoryFileImplement</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataListSingleton.cs" />
+    <Compile Include="FileDataListSingleton.cs" />
     <Compile Include="Implements\ComponentLogic.cs" />
     <Compile Include="Implements\OrderLogic.cs" />
     <Compile Include="Implements\ProductLogic.cs" />
