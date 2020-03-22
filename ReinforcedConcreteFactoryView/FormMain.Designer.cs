@@ -158,7 +158,7 @@
             this.пополнитьСкладToolStripMenuItem.Name = "пополнитьСкладToolStripMenuItem";
             this.пополнитьСкладToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.пополнитьСкладToolStripMenuItem.Text = "Пополнить склад";
-            this.пополнитьСкладToolStripMenuItem.Click += new System.EventHandler(this.ПополнитьСкладToolStripMenuItem_Click);
+            this.пополнитьСкладToolStripMenuItem.Click += new System.EventHandler(this.пополнитьСкладToolStripMenuItem_Click);
             // 
             // FormMain
             // 
