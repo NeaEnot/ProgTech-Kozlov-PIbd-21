@@ -69,12 +69,11 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             {
                 return context.Orders
                 .Where(rec => model == null || rec.Id == model.Id)
-                .ToList()
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ProductId = rec.ProductId,
-                    ProductName = GetProductName(rec.ProductId),
+                    ProductName = rec.ProductName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
@@ -82,19 +81,6 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     DateImplement = rec.DateImplement
                 })
                 .ToList();
-            }
-        }
-
-        private string GetProductName(int id)
-        {
-            using (var context = new ReinforcedConcreteFactoryDatabase())
-            {
-                string name = "";
-                var product = context.Products.FirstOrDefault(x => x.Id == id);
-
-                name = product != null ? product.ProductName : "";
-
-                return name;
             }
         }
     }
