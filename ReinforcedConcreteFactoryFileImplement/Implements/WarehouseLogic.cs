@@ -148,7 +148,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             .ToList();
         }
 
-        public void WriteOffComponents(OrderViewModel model)
+        public bool WriteOffComponents(OrderViewModel model)
         {
             var product = source.Products.Where(rec => rec.Id == model.ProductId).FirstOrDefault();
 
@@ -171,27 +171,31 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
 
                 if (sum < pc.Count * model.Count)
                 {
-                    throw new Exception("На складах недостаточно компонентов");
+                    return false;
                 }
-                else
-                {
-                    int neededCount = pc.Count;
+            }
 
-                    foreach (var wc in warehouseComponent)
+            foreach (var pc in productComponents)
+            {
+                var warehouseComponent = source.WarehouseComponents.Where(rec => rec.ComponentId == pc.ComponentId);
+                int neededCount = pc.Count;
+
+                foreach (var wc in warehouseComponent)
+                {
+                    if (wc.Count >= neededCount)
                     {
-                        if (wc.Count >= neededCount)
-                        {
-                            wc.Count -= neededCount;
-                            break;
-                        }
-                        else
-                        {
-                            neededCount -= wc.Count;
-                            wc.Count = 0;
-                        }
+                        wc.Count -= neededCount;
+                        break;
+                    }
+                    else
+                    {
+                        neededCount -= wc.Count;
+                        wc.Count = 0;
                     }
                 }
             }
+
+            return true;
         }
     }
 }
