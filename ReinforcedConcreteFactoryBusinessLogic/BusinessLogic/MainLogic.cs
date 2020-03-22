@@ -47,17 +47,22 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
 
-            warehouseLogic.WriteOffComponents(order);
-
-            orderLogic.CreateOrUpdate(new OrderBindingModel
-                                            {
-                                                Id = order.Id,
-                                                ProductId = order.ProductId,
-                                                Count = order.Count,
-                                                Sum = order.Sum,
-                                                DateCreate = order.DateCreate,
-                                                Status = OrderStatus.Выполняется
-                                            });
+            if (warehouseLogic.WriteOffComponents(order))
+            {
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    ProductId = order.ProductId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    Status = OrderStatus.Выполняется
+                });
+            }
+            else
+            {
+                throw new Exception("На складах недостаточно компонентов");
+            }
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)

@@ -18,6 +18,6 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
 
         void AddComponent(WarehouseComponentBindingModel model);
 
-        void WriteOffComponents(OrderViewModel model);
+        bool WriteOffComponents(OrderViewModel model);
     }
 }
