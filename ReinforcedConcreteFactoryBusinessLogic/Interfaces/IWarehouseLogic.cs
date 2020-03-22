@@ -21,4 +21,3 @@ namespace ReinforcedConcreteFactoryBusinessLogic.Interfaces
         void WriteOffComponents(OrderViewModel model);
     }
 }
-//
