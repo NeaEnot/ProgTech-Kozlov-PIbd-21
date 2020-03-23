@@ -73,7 +73,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 {
                     Id = rec.Id,
                     ProductId = rec.ProductId,
-                    ProductName = rec.ProductName,
+                    ProductName = rec.Product.ProductName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
