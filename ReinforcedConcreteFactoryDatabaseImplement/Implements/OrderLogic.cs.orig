@@ -68,15 +68,11 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
                 return context.Orders
-<<<<<<< HEAD
                 .Where(
                     rec => model == null 
                     || (rec.Id == model.Id && model.Id.HasValue) 
                     || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 )
-=======
-                .Where(rec => model == null || rec.Id == model.Id)
->>>>>>> Lab3
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -86,8 +82,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     DateImplement = rec.DateImplement,
                     Status = rec.Status,
 =======
-                    ProductName = rec.ProductName,
->>>>>>> Lab3
+                    ProductName = rec.Product.ProductName,
+>>>>>>> Lab3Hard
                     Count = rec.Count,
                     Sum = rec.Sum,
                     ProductName = rec.Product.ProductName
