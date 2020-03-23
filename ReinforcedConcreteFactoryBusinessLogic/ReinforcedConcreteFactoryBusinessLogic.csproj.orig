@@ -84,9 +84,12 @@
     <Compile Include="BindingModels\OrderBindingModel.cs" />
     <Compile Include="BindingModels\ProductBindingModel.cs" />
     <Compile Include="BindingModels\ProductComponentBindingModel.cs" />
+<<<<<<< HEAD
     <Compile Include="BindingModels\WarehouseBindingModel.cs" />
     <Compile Include="BindingModels\WarehouseComponentBindingModel.cs" />
+=======
     <Compile Include="BindingModels\ReportBindingModel.cs" />
+>>>>>>> Lab4
     <Compile Include="BusinessLogic\MainLogic.cs" />
     <Compile Include="BusinessLogic\ReportLogic.cs" />
     <Compile Include="BusinessLogic\SaveToExcel.cs" />
@@ -111,10 +114,13 @@
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductComponentViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="ViewModels\WarehouseComponentViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
+=======
     <Compile Include="ViewModels\ReportOrdersViewModel.cs" />
     <Compile Include="ViewModels\ReportProductComponentViewModel.cs" />
+>>>>>>> Lab4
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

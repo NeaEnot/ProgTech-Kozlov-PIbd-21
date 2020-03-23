@@ -1,6 +1,6 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
-using ReinforcedConcreteFactoryDatabaseImplement.Implements;
+using ReinforcedConcreteFactoryFileImplement.Implements;
 using System;
 using System.Windows.Forms;
 using Unity;
@@ -29,6 +29,7 @@ namespace ReinforcedConcreteFactoryView
             currentContainer.RegisterType<IWarehouseLogic, WarehouseLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderLogic, OrderLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }
