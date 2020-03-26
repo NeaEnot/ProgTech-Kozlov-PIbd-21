@@ -77,12 +77,14 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 {
                     Id = rec.Id,
                     ProductId = rec.ProductId,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                    Status = rec.Status,
                     Count = rec.Count,
                     Sum = rec.Sum,
-                    ProductName = rec.Product.ProductName
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
+                    ProductName = context.Products
+                    .Include(recP => recP)
+                    .FirstOrDefault(recP => recP.Id == rec.ProductId).ProductName
                 })
                 .ToList();
             }

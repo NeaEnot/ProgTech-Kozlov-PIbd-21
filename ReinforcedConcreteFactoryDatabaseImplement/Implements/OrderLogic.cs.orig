@@ -81,12 +81,19 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
                     Status = rec.Status,
-=======
-                    ProductName = rec.Product.ProductName,
->>>>>>> Lab3Hard
                     Count = rec.Count,
                     Sum = rec.Sum,
                     ProductName = rec.Product.ProductName
+=======
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
+                    ProductName = context.Products
+                    .Include(recP => recP)
+                    .FirstOrDefault(recP => recP.Id == rec.ProductId).ProductName
+>>>>>>> Lab3Hard
                 })
                 .ToList();
             }
