@@ -134,10 +134,9 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     ProductName = rec.ProductName,
                     Price = rec.Price,
                     ProductComponents = context.ProductComponents
-                .Include(recPC => recPC.Component)
-                .Where(recPC => recPC.ProductId == rec.Id)
-                .ToDictionary(recPC => recPC.ComponentId, recPC =>
-                (recPC.Component?.ComponentName, recPC.Count))
+                    .Include(recPC => recPC.Component)
+                    .Where(recPC => recPC.ProductId == rec.Id)
+                    .ToDictionary(recPC => recPC.ComponentId, recPC => (recPC.Component?.ComponentName, recPC.Count))
                 })
                 .ToList();
             }
