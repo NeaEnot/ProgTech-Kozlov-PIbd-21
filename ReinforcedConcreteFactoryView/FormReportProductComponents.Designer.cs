@@ -60,7 +60,7 @@
             this.Controls.Add(this.ButtonToPdf);
             this.Controls.Add(this.reportViewer);
             this.Name = "FormReportProductComponents";
-            this.Text = "FormReportOrders";
+            this.Text = "Компоненты и изделия";
             this.ResumeLayout(false);
 
         }
