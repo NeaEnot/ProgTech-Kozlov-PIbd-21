@@ -68,32 +68,27 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
                 return context.Orders
+<<<<<<< HEAD
                 .Where(
                     rec => model == null 
                     || (rec.Id == model.Id && model.Id.HasValue) 
                     || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 )
+=======
+                .Where(rec => model == null || rec.Id == model.Id)
+                .Include(rec => rec.Product)
+>>>>>>> Lab3
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ProductId = rec.ProductId,
-<<<<<<< HEAD
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                    Status = rec.Status,
+
                     Count = rec.Count,
                     Sum = rec.Sum,
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
                     ProductName = rec.Product.ProductName
-=======
-                    Count = rec.Count,
-                    Sum = rec.Sum,
-                    Status = rec.Status,
-                    DateCreate = rec.DateCreate,
-                    DateImplement = rec.DateImplement,
-                    ProductName = context.Products
-                    .Include(recP => recP)
-                    .FirstOrDefault(recP => recP.Id == rec.ProductId).ProductName
->>>>>>> Lab3
                 })
                 .ToList();
             }
