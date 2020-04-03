@@ -73,6 +73,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     || (rec.Id == model.Id && model.Id.HasValue) 
                     || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                 )
+                .Include(rec => rec.Product)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
@@ -82,9 +83,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
-                    ProductName = context.Products
-                    .Include(recP => recP)
-                    .FirstOrDefault(recP => recP.Id == rec.ProductId).ProductName
+                    ProductName = rec.Product.ProductName
                 })
                 .ToList();
             }
