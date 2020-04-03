@@ -79,7 +79,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     Status = rec.Status,
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
-                    ProductName = Product.ProductName
+                    ProductName = rec.Product.ProductName
                 })
                 .ToList();
             }
