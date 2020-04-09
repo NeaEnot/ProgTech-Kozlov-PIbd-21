@@ -15,12 +15,15 @@ namespace ReinforcedConcreteFactoryListImplement
 
         public List<ProductComponent> ProductComponents { get; set; }
 
+        public List<Client> Clients { get; set; }
+
         private DataListSingleton()
         {
             Components = new List<Component>();
             Orders = new List<Order>();
             Products = new List<Product>();
             ProductComponents = new List<ProductComponent>();
+            Clients = new List<Client>();
         }
 
         public static DataListSingleton GetInstance()
