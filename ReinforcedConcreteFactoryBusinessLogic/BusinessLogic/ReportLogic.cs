@@ -23,33 +23,31 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
 
         public List<ReportProductComponentViewModel> GetProductComponent()
         {
-            var components = componentLogic.Read(null);
             var products = productLogic.Read(null);
             var list = new List<ReportProductComponentViewModel>();
 
             foreach (var product in products)
             {
-                foreach (var component in components)
+                foreach (var pc in product.ProductComponents)
                 {
-                    if (product.ProductComponents.ContainsKey(component.Id))
+                    var record = new ReportProductComponentViewModel
                     {
-                        var record = new ReportProductComponentViewModel
-                        {
-                            ProductName = product.ProductName,
-                            ComponentName = component.ComponentName,
-                            Count = product.ProductComponents[component.Id].Item2
-                        };
+                        ProductName = product.ProductName,
+                        ComponentName = pc.Value.Item1,
+                        Count = pc.Value.Item2
+                    };
 
-                        list.Add(record);
-                    }
+                    list.Add(record);
                 }
             }
             return list;
         }
 
-        public List<ReportOrdersViewModel> GetOrders(ReportBindingModel model)
+        public List<(DateTime, List<ReportOrdersViewModel>)> GetOrders(ReportBindingModel model)
         {
-            return orderLogic.Read(new OrderBindingModel
+            List<(DateTime, List<ReportOrdersViewModel>)> list = new List<(DateTime, List<ReportOrdersViewModel>)>();
+
+            var orders = orderLogic.Read(new OrderBindingModel
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
@@ -61,8 +59,33 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 Count = x.Count,
                 Sum = x.Sum,
                 Status = x.Status
-            })
-            .ToList();
+            });
+
+            List<DateTime> dates = new List<DateTime>();
+            foreach (var order in orders)
+            {
+                if (!dates.Contains(order.DateCreate.Date))
+                {
+                    dates.Add(order.DateCreate.Date);
+                }
+            }
+
+            foreach(var date in dates)
+            {
+                (DateTime, List<ReportOrdersViewModel>) record;
+                record.Item2 = new List<ReportOrdersViewModel>();
+
+                record.Item1 = date;
+
+                foreach(var order in orders.Where(rec => rec.DateCreate.Date == date))
+                {
+                    record.Item2.Add(order);
+                }
+
+                list.Add(record);
+            }
+
+            return list;
         }
 
         public void SaveProductsToWordFile(ReportBindingModel model)
