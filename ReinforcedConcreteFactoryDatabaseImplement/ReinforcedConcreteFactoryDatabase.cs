@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ReinforcedConcreteFactoryDatabaseImplement.Models;
+﻿using ReinforcedConcreteFactoryDatabaseImplement.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement
@@ -33,5 +28,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement
         public virtual DbSet<Order> Orders { set; get; }
 
         public virtual DbSet<Client> Clients { set; get; }
+
+        public virtual DbSet<Implementer> Implementers { set; get; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
+using ReinforcedConcreteFactoryBusinessLogic.Enums;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
 using ReinforcedConcreteFactoryDatabaseImplement.Models;
@@ -33,7 +34,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 }
 
                 element.ProductId = model.ProductId == 0 ? element.ProductId : model.ProductId;
-                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
+                element.ClientId = model.ClientId.Value;
+                element.ImplementerId = model.ImplementerId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
@@ -72,13 +74,17 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     || rec.Id == model.Id && model.Id.HasValue
                     || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
                     || model.ClientId.HasValue && rec.ClientId == model.ClientId
+                    || model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue
+                    || model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется
                 )
                 .Include(rec => rec.Product)
                 .Include(rec => rec.Client)
+                .Include(rec => rec.Implementer)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     ClientId = rec.ClientId,
+                    ImplementerId = rec.ImplementerId,
                     ProductId = rec.ProductId,
                     Count = rec.Count,
                     Sum = rec.Sum,
@@ -86,7 +92,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                     DateCreate = rec.DateCreate,
                     DateImplement = rec.DateImplement,
                     ProductName = rec.Product.ProductName,
-                    ClientFIO = rec.Client.FIO
+                    ClientFIO = rec.Client.FIO,
+                    ImplementerFIO = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFIO : string.Empty,
                 })
                 .ToList();
             }
