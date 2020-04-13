@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 {
@@ -14,5 +15,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 
         [Required]
         public string Password { get; set; }
+
+        public List<MessageInfo> MessageInfoes { get; set; }
     }
 }

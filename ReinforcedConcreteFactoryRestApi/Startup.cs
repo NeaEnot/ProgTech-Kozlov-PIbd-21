@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReinforcedConcreteFactoryBusinessLogic.BusinessLogic;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
-using ReinforcedConcreteFactoryFileImplement.Implements;
+using ReinforcedConcreteFactoryDatabaseImplement.Implements;
 
 namespace ReinforcedConcreteFactoryRestApi
 {
@@ -23,6 +23,7 @@ namespace ReinforcedConcreteFactoryRestApi
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IProductLogic, ProductLogic>();
+            services.AddTransient<IMessageInfoLogic, MessageInfoLogic>();
             services.AddTransient<MainLogic>();
             services.AddControllers();
         }

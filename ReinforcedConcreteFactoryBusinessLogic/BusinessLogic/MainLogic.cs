@@ -2,6 +2,7 @@
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Enums;
 using System;
+using ReinforcedConcreteFactoryBusinessLogic.HelperModels;
 
 namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
 {
@@ -9,11 +10,14 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
     {
         private readonly IOrderLogic orderLogic;
 
+        private readonly IClientLogic clientLogic;
+
         private readonly object locker = new object();
 
-        public MainLogic(IOrderLogic orderLogic)
+        public MainLogic(IOrderLogic orderLogic, IClientLogic clientLogic)
         {
             this.orderLogic = orderLogic;
+            this.clientLogic = clientLogic;
         }
 
         public void CreateOrder(CreateOrderBindingModel model)
@@ -26,6 +30,13 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят
+            });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MailAddress = clientLogic.Read(new ClientBindingModel { Id = model.ClientId })?[0]?.Email,
+                Subject = $"Новый заказ",
+                Text = $"Заказ принят."
             });
         }
 
@@ -61,6 +72,13 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                     DateCreate = order.DateCreate,
                     Status = OrderStatus.Выполняется
                 });
+
+                MailLogic.MailSendAsync(new MailSendInfo
+                {
+                    MailAddress = clientLogic.Read(new ClientBindingModel { Id = order.ClientId })?[0]?.Email,
+                    Subject = $"Заказ №{order.Id}",
+                    Text = $"Заказ №{order.Id} передан в работу."
+                });
             }
         }
 
@@ -89,6 +107,14 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Готов
             });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MailAddress = clientLogic.Read(new ClientBindingModel { Id = order.ClientId })?[0]?.Email,
+                Subject = $"Заказ №{order.Id}",
+                Text = $"Заказ №{order.Id} готов."
+            });
+
         }
 
         public void PayOrder(ChangeStatusBindingModel model)
@@ -115,6 +141,13 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                 DateCreate = order.DateCreate,
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
+            });
+
+            MailLogic.MailSendAsync(new MailSendInfo
+            {
+                MailAddress = clientLogic.Read(new ClientBindingModel { Id = order.ClientId })?[0]?.Email,
+                Subject = $"Заказ №{order.Id}",
+                Text = $"Заказ №{order.Id} оплачен."
             });
         }
     }
