@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
+﻿namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
 {
     public class ReportProductComponentViewModel
     {
