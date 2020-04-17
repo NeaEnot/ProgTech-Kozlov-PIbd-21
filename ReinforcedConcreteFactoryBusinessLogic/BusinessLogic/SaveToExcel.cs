@@ -78,13 +78,13 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = date.Item1.ToString(),
+                        Text = date.Key.ToString(),
                         StyleIndex = 0U
                     });
 
                     rowIndex++;
 
-                    foreach (var order in date.Item2)
+                    foreach (var order in date)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {

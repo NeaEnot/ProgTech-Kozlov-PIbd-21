@@ -69,9 +69,9 @@ namespace ReinforcedConcreteFactoryView
                     {
                         decimal dateSum = 0;
 
-                        dataGridView.Rows.Add(new object[] { date.Item1, "", "" });
+                        dataGridView.Rows.Add(new object[] { date.Key, "", "" });
 
-                        foreach (var order in date.Item2)
+                        foreach (var order in date)
                         {
                             dataGridView.Rows.Add(new object[] { "", order.ProductName, order.Sum });
                             dateSum += order.Sum;
