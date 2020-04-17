@@ -1,5 +1,4 @@
 ﻿using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
-using System;
 using System.Collections.Generic;
 
 namespace ReinforcedConcreteFactoryBusinessLogic.HelperModels
@@ -11,5 +10,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.HelperModels
         public string Title { get; set; }
 
         public List<ReportProductComponentViewModel> ProductComponents { get; set; }
+
+        public List<ReportWarehouseComponentViewModel> WarehouseComponents { get; set; }
     }
 }

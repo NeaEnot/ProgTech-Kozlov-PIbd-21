@@ -1,6 +1,6 @@
 ﻿namespace ReinforcedConcreteFactoryView
 {
-    partial class FormReportProductComponents
+    partial class FormReportComponents
     {
         /// <summary>
         /// Required designer variable.
@@ -28,45 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.ReportWarehouseComponentViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ButtonToPdf = new System.Windows.Forms.Button();
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.ReportWarehouseComponentViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportViewer
+            // ReportWarehouseComponentViewModelBindingSource
             // 
-            this.reportViewer.LocalReport.ReportEmbeddedResource = "ReinforcedConcreteFactoryView.ReportProductComponents.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(3, 50);
-            this.reportViewer.Name = "reportViewer";
-            this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(1033, 535);
-            this.reportViewer.TabIndex = 1;
-            this.reportViewer.Load += new System.EventHandler(this.reportViewer_Load);
+            this.ReportWarehouseComponentViewModelBindingSource.DataSource = typeof(ReinforcedConcreteFactoryBusinessLogic.ViewModels.ReportWarehouseComponentViewModel);
             // 
             // ButtonToPdf
             // 
             this.ButtonToPdf.Location = new System.Drawing.Point(12, 12);
             this.ButtonToPdf.Name = "ButtonToPdf";
             this.ButtonToPdf.Size = new System.Drawing.Size(137, 23);
-            this.ButtonToPdf.TabIndex = 6;
+            this.ButtonToPdf.TabIndex = 8;
             this.ButtonToPdf.Text = "В PDF";
             this.ButtonToPdf.UseVisualStyleBackColor = true;
             this.ButtonToPdf.Click += new System.EventHandler(this.ButtonToPdf_Click);
             // 
-            // FormReportProductComponents
+            // reportViewer
+            // 
+            this.reportViewer.LocalReport.ReportEmbeddedResource = "ReinforcedConcreteFactoryView.ReportComponents.rdlc";
+            this.reportViewer.Location = new System.Drawing.Point(12, 55);
+            this.reportViewer.Name = "reportViewer";
+            this.reportViewer.ServerReport.BearerToken = null;
+            this.reportViewer.Size = new System.Drawing.Size(1033, 535);
+            this.reportViewer.TabIndex = 7;
+            // 
+            // FormReportComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 588);
+            this.ClientSize = new System.Drawing.Size(1059, 602);
             this.Controls.Add(this.ButtonToPdf);
             this.Controls.Add(this.reportViewer);
-            this.Name = "FormReportProductComponents";
-            this.Text = "Компоненты и изделия";
+            this.Name = "FormReportComponents";
+            this.Text = "FormReportComponents";
+            this.Load += new System.EventHandler(this.reportViewer_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ReportWarehouseComponentViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+
         private System.Windows.Forms.Button ButtonToPdf;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.BindingSource ReportWarehouseComponentViewModelBindingSource;
     }
 }

@@ -20,31 +20,77 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             paragraph.Style = "NormalTitle";
 
             var table = document.LastSection.AddTable();
-            List<string> columns = new List<string> { "8cm", "6cm", "3cm" };
+            List<string> columns = new List<string> { "7cm", "7cm", "3cm" };
 
             foreach (var elem in columns)
             {
                 table.AddColumn(elem);
             }
 
-            CreateRow(new PdfRowParameters
+            if (info.ProductComponents != null)
             {
-                Table = table,
-                Texts = new List<string> { "Изделие", "Компонент", "Количество" },
-                Style = "NormalTitle",
-                ParagraphAlignment = ParagraphAlignment.Center
-            });
+                CreateRow(new PdfRowParameters
+                {
+                    Table = table,
+                    Texts = new List<string> { "Изделие", "Компонент", "Количество" },
+                    Style = "NormalTitle",
+                    ParagraphAlignment = ParagraphAlignment.Center
+                });
 
-            foreach (var pc in info.ProductComponents)
+                foreach (var pc in info.ProductComponents)
+                {
+                    CreateRow(new PdfRowParameters
+                    {
+                        Table = table,
+                        Texts = new List<string>
+                    {
+                        pc.ProductName,
+                        pc.ComponentName,
+                        pc.Count.ToString()
+                    },
+                        Style = "Normal",
+                        ParagraphAlignment = ParagraphAlignment.Left
+                    });
+                }
+            }
+            else if (info.WarehouseComponents != null)
             {
+                int sum = 0;
+
+                CreateRow(new PdfRowParameters
+                {
+                    Table = table,
+                    Texts = new List<string> { "Компонент", "Склад", "Количество" },
+                    Style = "NormalTitle",
+                    ParagraphAlignment = ParagraphAlignment.Center
+                });
+
+                foreach (var wc in info.WarehouseComponents)
+                {
+                    CreateRow(new PdfRowParameters
+                    {
+                        Table = table,
+                        Texts = new List<string>
+                    {
+                        wc.ComponentName,
+                        wc.WarehouseName,
+                        wc.Count.ToString()
+                    },
+                        Style = "Normal",
+                        ParagraphAlignment = ParagraphAlignment.Left
+                    });
+
+                    sum += wc.Count;
+                }
+
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
                     Texts = new List<string>
                     {
-                        pc.ProductName,
-                        pc.ComponentName,
-                        pc.Count.ToString()
+                        "Всего",
+                        "",
+                        sum.ToString()
                     },
                     Style = "Normal",
                     ParagraphAlignment = ParagraphAlignment.Left

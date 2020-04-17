@@ -12,5 +12,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.HelperModels
         public string Title { get; set; }
 
         public List<IGrouping<DateTime, OrderViewModel>> Orders { get; set; }
+
+        public List<WarehouseViewModel> Warehouses { get; set; }
     }
 }

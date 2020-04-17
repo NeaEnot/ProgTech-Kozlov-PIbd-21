@@ -10,18 +10,18 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
 {
     public class ReportLogic
     {
-        private readonly IComponentLogic componentLogic;
         private readonly IProductLogic productLogic;
         private readonly IOrderLogic orderLogic;
+        private readonly IWarehouseLogic warehouseLogic;
 
-        public ReportLogic(IProductLogic productLogic, IComponentLogic componentLogic, IOrderLogic orderLogic)
+        public ReportLogic(IProductLogic productLogic, IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
         {
             this.productLogic = productLogic;
-            this.componentLogic = componentLogic;
             this.orderLogic = orderLogic;
+            this.warehouseLogic = warehouseLogic;
         }
 
-        public List<ReportProductComponentViewModel> GetProductComponent()
+        public List<ReportProductComponentViewModel> GetProductComponents()
         {
             var products = productLogic.Read(null);
             var list = new List<ReportProductComponentViewModel>();
@@ -35,6 +35,28 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                         ProductName = product.ProductName,
                         ComponentName = pc.Value.Item1,
                         Count = pc.Value.Item2
+                    };
+
+                    list.Add(record);
+                }
+            }
+            return list;
+        }
+
+        public List<ReportWarehouseComponentViewModel> GetWarehouseComponents()
+        {
+            var wahehouses = warehouseLogic.Read(null);
+            var list = new List<ReportWarehouseComponentViewModel>();
+
+            foreach (var wahehouse in wahehouses)
+            {
+                foreach (var wc in wahehouse.WarehouseComponents)
+                {
+                    var record = new ReportWarehouseComponentViewModel
+                    {
+                        WarehouseName = wahehouse.WarehouseName,
+                        ComponentName = wc.Value.Item1,
+                        Count = wc.Value.Item2
                     };
 
                     list.Add(record);
@@ -64,7 +86,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             {
                 FileName = model.FileName,
                 Title = "Список изделий",
-                Products = productLogic.Read(null)
+                Products = productLogic.Read(null),
+                Warehouses = null
             });
         }
 
@@ -74,7 +97,8 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             {
                 FileName = model.FileName,
                 Title = "Список заказов",
-                Orders = GetOrders(model)
+                Orders = GetOrders(model),
+                Warehouses = null
             });
         }
 
@@ -84,7 +108,41 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             {
                 FileName = model.FileName,
                 Title = "Список издлий с компонентами",
-                ProductComponents = GetProductComponent()
+                ProductComponents = GetProductComponents(),
+                WarehouseComponents = null
+            });
+        }
+
+        public void SaveWarehousesToWordFile(ReportBindingModel model)
+        {
+            SaveToWord.CreateDoc(new WordInfo
+            {
+                FileName = model.FileName,
+                Title = "Список складов",
+                Products = null,
+                Warehouses = warehouseLogic.Read(null)
+            });
+        }
+
+        public void SaveWarehouseComponentsToExcelFile(ReportBindingModel model)
+        {
+            SaveToExcel.CreateDoc(new ExcelInfo
+            {
+                FileName = model.FileName,
+                Title = "Список компонентов в складах",
+                Orders = null,
+                Warehouses = warehouseLogic.Read(null)
+            });
+        }
+
+        public void SaveComponentsToPdfFile(ReportBindingModel model)
+        {
+            SaveToPdf.CreateDoc(new PdfInfo
+            {
+                FileName = model.FileName,
+                Title = "Компонентов",
+                ProductComponents = null,
+                WarehouseComponents = GetWarehouseComponents()
             });
         }
     }

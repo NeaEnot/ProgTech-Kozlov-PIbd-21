@@ -88,7 +88,6 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 }
                 else
                 {
-
                     element = new WarehouseComponent();
 
                     context.WarehouseComponents.Add(element);

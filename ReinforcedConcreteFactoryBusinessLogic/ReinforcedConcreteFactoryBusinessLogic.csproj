@@ -111,6 +111,7 @@
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductComponentViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ReportWarehouseComponentViewModel.cs" />
     <Compile Include="ViewModels\WarehouseComponentViewModel.cs" />
     <Compile Include="ViewModels\WarehouseViewModel.cs" />
     <Compile Include="ViewModels\ReportOrdersViewModel.cs" />

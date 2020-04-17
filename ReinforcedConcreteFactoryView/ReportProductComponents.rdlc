@@ -96,7 +96,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Product Name</Value>
+                                  <Value>Изделие</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -126,7 +126,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Component Name</Value>
+                                  <Value>Компонент</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -156,7 +156,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Count</Value>
+                                  <Value>Количество</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -306,7 +306,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>1.51042in</Height>
         <Style />
       </Body>
       <Width>8.41642in</Width>

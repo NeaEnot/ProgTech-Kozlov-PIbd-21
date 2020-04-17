@@ -7,17 +7,32 @@ using Unity;
 
 namespace ReinforcedConcreteFactoryView
 {
-    public partial class FormReportProductComponents : Form
+    public partial class FormReportComponents : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
 
         private readonly ReportLogic logic;
 
-        public FormReportProductComponents(ReportLogic logic)
+        public FormReportComponents(ReportLogic logic)
         {
             InitializeComponent();
             this.logic = logic;
+        }
+
+        private void reportViewer_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var dataSource = logic.GetWarehouseComponents();
+                ReportDataSource source = new ReportDataSource("DataSetWarehouseComponents", dataSource);
+                reportViewer.LocalReport.DataSources.Add(source);
+                reportViewer.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ButtonToPdf_Click(object sender, EventArgs e)
@@ -28,7 +43,7 @@ namespace ReinforcedConcreteFactoryView
                 {
                     try
                     {
-                        logic.SaveProductComponentsToPdfFile(new ReportBindingModel
+                        logic.SaveComponentsToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName,
                         });
@@ -40,21 +55,6 @@ namespace ReinforcedConcreteFactoryView
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-        }
-
-        private void reportViewer_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var dataSource = logic.GetProductComponents();
-                ReportDataSource source = new ReportDataSource("DataSetProductComponent", dataSource);
-                reportViewer.LocalReport.DataSources.Add(source);
-                reportViewer.RefreshReport();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -68,32 +68,59 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
 
                 uint rowIndex = 2;
 
-                foreach (var date in info.Orders)
+                if (info.Orders != null)
                 {
-                    decimal dateSum = 0;
-
-                    InsertCellInWorksheet(new ExcelCellParameters
+                    foreach (var date in info.Orders)
                     {
-                        Worksheet = worksheetPart.Worksheet,
-                        ShareStringPart = shareStringPart,
-                        ColumnName = "A",
-                        RowIndex = rowIndex,
-                        Text = date.Key.ToString(),
-                        StyleIndex = 0U
-                    });
+                        decimal dateSum = 0;
 
-                    rowIndex++;
-
-                    foreach (var order in date)
-                    {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
                             Worksheet = worksheetPart.Worksheet,
                             ShareStringPart = shareStringPart,
-                            ColumnName = "B",
+                            ColumnName = "A",
                             RowIndex = rowIndex,
-                            Text = order.ProductName,
-                            StyleIndex = 1U
+                            Text = date.Key.ToString(),
+                            StyleIndex = 0U
+                        });
+
+                        rowIndex++;
+
+                        foreach (var order in date)
+                        {
+                            InsertCellInWorksheet(new ExcelCellParameters
+                            {
+                                Worksheet = worksheetPart.Worksheet,
+                                ShareStringPart = shareStringPart,
+                                ColumnName = "B",
+                                RowIndex = rowIndex,
+                                Text = order.ProductName,
+                                StyleIndex = 1U
+                            });
+
+                            InsertCellInWorksheet(new ExcelCellParameters
+                            {
+                                Worksheet = worksheetPart.Worksheet,
+                                ShareStringPart = shareStringPart,
+                                ColumnName = "C",
+                                RowIndex = rowIndex,
+                                Text = order.Sum.ToString(),
+                                StyleIndex = 1U
+                            });
+
+                            dateSum += order.Sum;
+
+                            rowIndex++;
+                        }
+
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "A",
+                            RowIndex = rowIndex,
+                            Text = "Итого",
+                            StyleIndex = 0U
                         });
 
                         InsertCellInWorksheet(new ExcelCellParameters
@@ -102,36 +129,80 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
                             ShareStringPart = shareStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = order.Sum.ToString(),
-                            StyleIndex = 1U
+                            Text = dateSum.ToString(),
+                            StyleIndex = 0U
                         });
-
-                        dateSum += order.Sum;
 
                         rowIndex++;
                     }
-
-                    InsertCellInWorksheet(new ExcelCellParameters
+                }
+                else if (info.Warehouses != null)
+                {
+                    foreach (var warehouse in info.Warehouses)
                     {
-                        Worksheet = worksheetPart.Worksheet,
-                        ShareStringPart = shareStringPart,
-                        ColumnName = "A",
-                        RowIndex = rowIndex,
-                        Text = "Итого",
-                        StyleIndex = 0U
-                    });
+                        int componentsSum = 0;
 
-                    InsertCellInWorksheet(new ExcelCellParameters
-                    {
-                        Worksheet = worksheetPart.Worksheet,
-                        ShareStringPart = shareStringPart,
-                        ColumnName = "C",
-                        RowIndex = rowIndex,
-                        Text = dateSum.ToString(),
-                        StyleIndex = 0U
-                    });
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "A",
+                            RowIndex = rowIndex,
+                            Text = warehouse.WarehouseName,
+                            StyleIndex = 0U
+                        });
 
-                    rowIndex++;
+                        rowIndex++;
+
+                        foreach (var component in warehouse.WarehouseComponents.Values)
+                        {
+                            InsertCellInWorksheet(new ExcelCellParameters
+                            {
+                                Worksheet = worksheetPart.Worksheet,
+                                ShareStringPart = shareStringPart,
+                                ColumnName = "B",
+                                RowIndex = rowIndex,
+                                Text = component.Item1,
+                                StyleIndex = 1U
+                            });
+
+                            InsertCellInWorksheet(new ExcelCellParameters
+                            {
+                                Worksheet = worksheetPart.Worksheet,
+                                ShareStringPart = shareStringPart,
+                                ColumnName = "C",
+                                RowIndex = rowIndex,
+                                Text = component.Item2.ToString(),
+                                StyleIndex = 1U
+                            });
+
+                            componentsSum += component.Item2;
+
+                            rowIndex++;
+                        }
+
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "A",
+                            RowIndex = rowIndex,
+                            Text = "Итого",
+                            StyleIndex = 0U
+                        });
+
+                        InsertCellInWorksheet(new ExcelCellParameters
+                        {
+                            Worksheet = worksheetPart.Worksheet,
+                            ShareStringPart = shareStringPart,
+                            ColumnName = "C",
+                            RowIndex = rowIndex,
+                            Text = componentsSum.ToString(),
+                            StyleIndex = 0U
+                        });
+
+                        rowIndex++;
+                    }
                 }
 
                 workbookpart.Workbook.Save();

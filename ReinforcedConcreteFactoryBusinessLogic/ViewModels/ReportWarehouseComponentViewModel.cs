@@ -1,8 +1,8 @@
 ﻿namespace ReinforcedConcreteFactoryBusinessLogic.ViewModels
 {
-    public class ReportProductComponentViewModel
+    public class ReportWarehouseComponentViewModel
     {
-        public string ProductName { get; set; }
+        public string WarehouseName { get; set; }
 
         public string ComponentName { get; set; }
 
