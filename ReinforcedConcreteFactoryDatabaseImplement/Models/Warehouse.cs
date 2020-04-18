@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 {
@@ -9,6 +10,6 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
         [Required]
         public string WarehouseName { get; set; }
 
-        public virtual WarehouseComponent WarehouseComponent { get; set; }
+        public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
     }
 }

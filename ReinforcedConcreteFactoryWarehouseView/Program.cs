@@ -1,17 +1,16 @@
-﻿using ReinforcedConcreteFactoryBusinessLogic.ViewModels;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
-namespace ReinforcedConcreteFactoryClientView
+namespace ReinforcedConcreteFactoryWarehouseView
 {
     static class Program
     {
-        public static ClientViewModel Client { get; set; }
+        public static bool IsLogined { get; set; }
 
         [STAThread]
         static void Main()
         {
-            APIClient.Connect();
+            APIWarehouse.Connect();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -19,7 +18,7 @@ namespace ReinforcedConcreteFactoryClientView
             var form = new FormEnter();
             form.ShowDialog();
 
-            if (Client != null)
+            if (IsLogined)
             {
                 Application.Run(new FormMain());
             }

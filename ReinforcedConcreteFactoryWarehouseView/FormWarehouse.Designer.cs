@@ -1,4 +1,4 @@
-﻿namespace ReinforcedConcreteFactoryView
+﻿namespace ReinforcedConcreteFactoryWarehouseView
 {
     partial class FormWarehouse
     {
@@ -25,17 +25,14 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(501, 553);
+            this.buttonCancel.Location = new System.Drawing.Point(250, 38);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(123, 45);
+            this.buttonCancel.Size = new System.Drawing.Size(82, 29);
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Отменить";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -43,9 +40,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(362, 553);
+            this.buttonSave.Location = new System.Drawing.Point(157, 38);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(133, 45);
+            this.buttonSave.Size = new System.Drawing.Size(89, 29);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -53,54 +51,35 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(130, 22);
+            this.textBoxName.Location = new System.Drawing.Point(87, 14);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(365, 26);
+            this.textBoxName.Size = new System.Drawing.Size(245, 20);
             this.textBoxName.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Location = new System.Drawing.Point(8, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 20);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Название";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(16, 54);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(606, 476);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Компоненты";
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(16, 25);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowTemplate.Height = 28;
-            this.dataGridView.Size = new System.Drawing.Size(571, 418);
-            this.dataGridView.TabIndex = 5;
-            // 
             // FormWarehouse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 610);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(342, 77);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormWarehouse";
             this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormWarehouse_Load);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +91,5 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView;
     }
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AEA90B0-8870-4D54-9663-027B13252D2D}</ProjectGuid>
+    <ProjectGuid>{33B34862-AD18-40F7-814D-A24D5ED0EBAA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ReinforcedConcreteFactoryClientView</RootNamespace>
-    <AssemblyName>ReinforcedConcreteFactoryClientView</AssemblyName>
+    <RootNamespace>ReinforcedConcreteFactoryWarehouseView</RootNamespace>
+    <AssemblyName>ReinforcedConcreteFactoryWarehouseView</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -71,6 +71,9 @@
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.5.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,13 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIClient.cs" />
-    <Compile Include="FormCreateOrder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormCreateOrder.Designer.cs">
-      <DependentUpon>FormCreateOrder.cs</DependentUpon>
-    </Compile>
+    <Compile Include="APIWarehouse.cs" />
     <Compile Include="FormEnter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,34 +98,31 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormRegister.cs">
+    <Compile Include="FormReplanishWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegister.Designer.cs">
-      <DependentUpon>FormRegister.cs</DependentUpon>
+    <Compile Include="FormReplanishWarehouse.Designer.cs">
+      <DependentUpon>FormReplanishWarehouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUpdateData.cs">
+    <Compile Include="FormWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUpdateData.Designer.cs">
-      <DependentUpon>FormUpdateData.cs</DependentUpon>
+    <Compile Include="FormWarehouse.Designer.cs">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormCreateOrder.resx">
-      <DependentUpon>FormCreateOrder.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormEnter.resx">
       <DependentUpon>FormEnter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegister.resx">
-      <DependentUpon>FormRegister.cs</DependentUpon>
+    <EmbeddedResource Include="FormReplanishWarehouse.resx">
+      <DependentUpon>FormReplanishWarehouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUpdateData.resx">
-      <DependentUpon>FormUpdateData.cs</DependentUpon>
+    <EmbeddedResource Include="FormWarehouse.resx">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,4 @@
-﻿namespace ReinforcedConcreteFactoryClientView
+﻿namespace ReinforcedConcreteFactoryWarehouseView
 {
     partial class FormMain
     {
@@ -15,18 +15,16 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.создатьЗаказToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.создатьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.изменитьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.пополнитьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.удалитьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.изменитьДанныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,33 +50,49 @@
             // менюToolStripMenuItem
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.создатьЗаказToolStripMenuItem,
-            this.обновитьСписокToolStripMenuItem,
-            this.изменитьДанныеToolStripMenuItem});
+            this.создатьСкладToolStripMenuItem,
+            this.изменитьСкладToolStripMenuItem,
+            this.пополнитьСкладToolStripMenuItem,
+            this.удалитьСкладToolStripMenuItem,
+            this.обновитьСписокToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
-            // создатьЗаказToolStripMenuItem
+            // создатьСкладToolStripMenuItem
             // 
-            this.создатьЗаказToolStripMenuItem.Name = "создатьЗаказToolStripMenuItem";
-            this.создатьЗаказToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.создатьЗаказToolStripMenuItem.Text = "Создать заказ";
-            this.создатьЗаказToolStripMenuItem.Click += new System.EventHandler(this.CreateOrderToolStripMenuItem_Click);
+            this.создатьСкладToolStripMenuItem.Name = "создатьСкладToolStripMenuItem";
+            this.создатьСкладToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.создатьСкладToolStripMenuItem.Text = "Создать склад";
+            this.создатьСкладToolStripMenuItem.Click += new System.EventHandler(this.создатьСкладToolStripMenuItem_Click);
+            // 
+            // изменитьСкладToolStripMenuItem
+            // 
+            this.изменитьСкладToolStripMenuItem.Name = "изменитьСкладToolStripMenuItem";
+            this.изменитьСкладToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.изменитьСкладToolStripMenuItem.Text = "Изменить склад";
+            this.изменитьСкладToolStripMenuItem.Click += new System.EventHandler(this.изменитьСкладToolStripMenuItem_Click);
+            // 
+            // пополнитьСкладToolStripMenuItem
+            // 
+            this.пополнитьСкладToolStripMenuItem.Name = "пополнитьСкладToolStripMenuItem";
+            this.пополнитьСкладToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.пополнитьСкладToolStripMenuItem.Text = "Пополнить склад";
+            this.пополнитьСкладToolStripMenuItem.Click += new System.EventHandler(this.пополнитьСкладToolStripMenuItem_Click);
+            // 
+            // удалитьСкладToolStripMenuItem
+            // 
+            this.удалитьСкладToolStripMenuItem.Name = "удалитьСкладToolStripMenuItem";
+            this.удалитьСкладToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.удалитьСкладToolStripMenuItem.Text = "Удалить склад";
+            this.удалитьСкладToolStripMenuItem.Click += new System.EventHandler(this.удалитьСкладToolStripMenuItem_Click);
             // 
             // обновитьСписокToolStripMenuItem
             // 
             this.обновитьСписокToolStripMenuItem.Name = "обновитьСписокToolStripMenuItem";
             this.обновитьСписокToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.обновитьСписокToolStripMenuItem.Text = "Обновить список";
-            this.обновитьСписокToolStripMenuItem.Click += new System.EventHandler(this.RefreshOrderListToolStripMenuItem_Click);
-            // 
-            // изменитьДанныеToolStripMenuItem
-            // 
-            this.изменитьДанныеToolStripMenuItem.Name = "изменитьДанныеToolStripMenuItem";
-            this.изменитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.изменитьДанныеToolStripMenuItem.Text = "Изменить данные";
-            this.изменитьДанныеToolStripMenuItem.Click += new System.EventHandler(this.UpdateDataToolStripMenuItem_Click);
+            this.обновитьСписокToolStripMenuItem.Click += new System.EventHandler(this.обновитьСписокToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -102,8 +116,10 @@
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem создатьЗаказToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem создатьСкладToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem изменитьСкладToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem пополнитьСкладToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem удалитьСкладToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem обновитьСписокToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem изменитьДанныеToolStripMenuItem;
     }
 }
