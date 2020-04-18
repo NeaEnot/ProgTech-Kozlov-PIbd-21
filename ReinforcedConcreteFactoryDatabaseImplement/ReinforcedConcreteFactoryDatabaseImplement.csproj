@@ -161,6 +161,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implements\ClientLogic.cs" />
     <Compile Include="Implements\ComponentLogic.cs" />
     <Compile Include="Implements\OrderLogic.cs" />
     <Compile Include="Implements\ProductLogic.cs" />
@@ -177,7 +178,12 @@
     <Compile Include="Migrations\20200313123647_Corrections2.designer.cs">
       <DependentUpon>20200313123647_Corrections2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200403114215_AddСlient.cs" />
+    <Compile Include="Migrations\20200403114215_AddСlient.designer.cs">
+      <DependentUpon>20200403114215_AddСlient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ReinforcedConcreteFactoryDatabaseModelSnapshot.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryListImplement.Models;
@@ -68,6 +65,7 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
         {
             order.ProductId = model.ProductId;
             order.Count = model.Count;
+            order.ClientId = (int)model.ClientId;
             order.DateCreate = model.DateCreate;
             order.DateImplement = model.DateImplement;
             order.Sum = model.Sum;
@@ -85,6 +83,7 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                 if (
                     model != null && order.Id == model.Id
                     || model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate >= model.DateFrom && order.DateCreate <= model.DateTo
+                    || model.ClientId.HasValue && order.ClientId == model.ClientId
                 )
                 {
                     result.Add(CreateViewModel(order));
@@ -117,6 +116,7 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ProductId = order.ProductId,
                 ProductName = productName,
                 Count = order.Count,

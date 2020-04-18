@@ -239,6 +239,12 @@
     <Compile Include="FormReportComponents.Designer.cs">
       <DependentUpon>FormReportComponents.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClients.Designer.cs">
+      <DependentUpon>FormClients.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportProductComponents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +315,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormReportComponents.resx">
       <DependentUpon>FormReportComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClients.resx">
+      <DependentUpon>FormClients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportProductComponents.resx">
       <DependentUpon>FormReportProductComponents.cs</DependentUpon>

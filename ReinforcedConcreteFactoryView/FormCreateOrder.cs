@@ -14,12 +14,14 @@ namespace ReinforcedConcreteFactoryView
         public new IUnityContainer Container { get; set; }
 
         private readonly IProductLogic logicP;
+        private readonly IClientLogic logicC;
         private readonly MainLogic logicM;
 
-        public FormCreateOrder(IProductLogic logicP, MainLogic logicM)
+        public FormCreateOrder(IProductLogic logicP, IClientLogic logicC, MainLogic logicM)
         {
             InitializeComponent();
             this.logicP = logicP;
+            this.logicC = logicC;
             this.logicM = logicM;
         }
 
@@ -35,6 +37,16 @@ namespace ReinforcedConcreteFactoryView
                     comboBoxProduct.ValueMember = "Id";
                     comboBoxProduct.DataSource = listP;
                     comboBoxProduct.SelectedItem = null;
+                }
+
+                var listC = logicC.Read(null);
+
+                if (listC != null)
+                {
+                    comboBoxClient.DisplayMember = "FIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -78,15 +90,19 @@ namespace ReinforcedConcreteFactoryView
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
-                MessageBox.Show("Заполните поле Количество", "Ошибка",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Заполните поле Количество", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (comboBoxProduct.SelectedValue == null)
             {
-                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -95,6 +111,7 @@ namespace ReinforcedConcreteFactoryView
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

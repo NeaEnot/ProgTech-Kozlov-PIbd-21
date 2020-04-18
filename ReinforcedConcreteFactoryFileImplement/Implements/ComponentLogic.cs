@@ -53,7 +53,6 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             {
                 source.Components.Remove(element);
             }
-
             else
             {
                 throw new Exception("Элемент не найден");

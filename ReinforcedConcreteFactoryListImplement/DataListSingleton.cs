@@ -14,6 +14,8 @@ namespace ReinforcedConcreteFactoryListImplement
         public List<Product> Products { get; set; }
 
         public List<ProductComponent> ProductComponents { get; set; }
+        
+        public List<Client> Clients { get; set; }
 
         public List<Warehouse> Warehouses { get; set; }
 
@@ -25,6 +27,7 @@ namespace ReinforcedConcreteFactoryListImplement
             Orders = new List<Order>();
             Products = new List<Product>();
             ProductComponents = new List<ProductComponent>();
+            Clients = new List<Client>();
             Warehouses = new List<Warehouse>();
             WarehouseComponents = new List<WarehouseComponent>();
         }
