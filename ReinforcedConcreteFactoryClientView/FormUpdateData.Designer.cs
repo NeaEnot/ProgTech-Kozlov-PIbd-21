@@ -109,7 +109,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormUpdateData";
-            this.Text = "Регистрация";
+            this.Text = "Изменение данных пользователя";
             this.ResumeLayout(false);
             this.PerformLayout();
 
