@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReinforcedConcreteFactoryBusinessLogic.BindingModels;
 using ReinforcedConcreteFactoryBusinessLogic.Interfaces;
 using ReinforcedConcreteFactoryFileImplement.Models;
@@ -40,6 +38,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
             }
 
             element.ProductId = model.ProductId == 0 ? element.ProductId : model.ProductId;
+            element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
             element.Count = model.Count;
             element.Sum = model.Sum;
             element.Status = model.Status;
@@ -68,12 +67,15 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
                 rec => model == null
                 || rec.Id == model.Id
                 || model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo
+                || model.ClientId.HasValue && rec.ClientId == model.ClientId
             )
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
+                ClientId = rec.ClientId,
                 ProductId = rec.ProductId,
-                ProductName = GetProductName(rec.ProductId),
+                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.FIO,
+                ProductName = source.Products.FirstOrDefault(recP => recP.Id == rec.ProductId)?.ProductName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -81,16 +83,6 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
-        }
-
-        private string GetProductName(int id)
-        {
-            string name = "";
-            var product = source.Products.FirstOrDefault(x => x.Id == id);
-
-            name = product != null ? product.ProductName : "";
-
-            return name;
         }
     }
 }

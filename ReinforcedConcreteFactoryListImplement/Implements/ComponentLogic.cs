@@ -31,7 +31,6 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
                 {
                     tempComponent.Id = component.Id + 1;
                 }
-
                 else if (model.Id.HasValue && component.Id == model.Id)
                 {
                     tempComponent = component;
