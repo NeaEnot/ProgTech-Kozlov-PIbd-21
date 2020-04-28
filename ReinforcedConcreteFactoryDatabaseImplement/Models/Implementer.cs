@@ -1,8 +1,4 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Models
 {
@@ -15,5 +11,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
         public int WorkingTime { get; set; }
 
         public int PauseTime { get; set; }
+        
+        public List<Order> Orders { get; set; }
     }
 }
