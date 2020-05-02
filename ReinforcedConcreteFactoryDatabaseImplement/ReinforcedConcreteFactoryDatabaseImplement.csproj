@@ -163,6 +163,7 @@
   <ItemGroup>
     <Compile Include="Implements\ClientLogic.cs" />
     <Compile Include="Implements\ComponentLogic.cs" />
+    <Compile Include="Implements\ImplementerLogic.cs" />
     <Compile Include="Implements\OrderLogic.cs" />
     <Compile Include="Implements\ProductLogic.cs" />
     <Compile Include="Migrations\20200305150918_InitialCreate.cs" />
@@ -177,9 +178,14 @@
     <Compile Include="Migrations\20200403114215_AddСlient.designer.cs">
       <DependentUpon>20200403114215_AddСlient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200410105913_Add Implementers.cs" />
+    <Compile Include="Migrations\20200410105913_Add Implementers.designer.cs">
+      <DependentUpon>20200410105913_Add Implementers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ReinforcedConcreteFactoryDatabaseModelSnapshot.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Component.cs" />
+    <Compile Include="Models\Implementer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductComponent.cs" />
