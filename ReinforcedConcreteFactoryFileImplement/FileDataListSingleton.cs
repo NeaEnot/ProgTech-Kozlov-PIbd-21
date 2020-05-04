@@ -18,6 +18,7 @@ namespace ReinforcedConcreteFactoryFileImplement
         private readonly string ProductComponentFileName = "C:\\Users\\olegk\\source\\repos\\ProgTech\\ReinforcedConcreteFactoryFileImplement\\bin\\Debug\\Files\\ProductComponent.xml";
         private readonly string ClientFileName = "C:\\Users\\olegk\\source\\repos\\ProgTech\\ReinforcedConcreteFactoryFileImplement\\bin\\Debug\\Files\\Client.xml";
         private readonly string ImplementerFileName = "C:\\Users\\olegk\\source\\repos\\ProgTech\\ReinforcedConcreteFactoryFileImplement\\bin\\Debug\\Files\\Implementer.xml";
+        private readonly string MessageInfoFileName = "C:\\Users\\olegk\\source\\repos\\ProgTech\\ReinforcedConcreteFactoryFileImplement\\bin\\Debug\\Files\\MessageInfo.xml";
 
         public List<Component> Components { get; set; }
 
@@ -31,6 +32,8 @@ namespace ReinforcedConcreteFactoryFileImplement
 
         public List<Implementer> Implementers { get; set; }
 
+        public List<MessageInfo> MessageInfoes { get; set; }
+
         private FileDataListSingleton()
         {
             Components = LoadComponents();
@@ -39,6 +42,7 @@ namespace ReinforcedConcreteFactoryFileImplement
             ProductComponents = LoadProductComponents();
             Clients = LoadClients();
             Implementers = LoadImplementers();
+            MessageInfoes = LoadMessageInfoes();
         }
 
         public static FileDataListSingleton GetInstance()
@@ -59,6 +63,7 @@ namespace ReinforcedConcreteFactoryFileImplement
             SaveProductComponents();
             SaveClients();
             SaveImplementers();
+            SaveMessageInfoes();
         }
 
         private List<Component> LoadComponents()
@@ -207,6 +212,32 @@ namespace ReinforcedConcreteFactoryFileImplement
             return list;
         }
 
+        private List<MessageInfo> LoadMessageInfoes()
+        {
+            var list = new List<MessageInfo>();
+
+            if (File.Exists(MessageInfoFileName))
+            {
+                XDocument xDocument = XDocument.Load(MessageInfoFileName);
+                var xElements = xDocument.Root.Elements("MessageInfo").ToList();
+
+                foreach (var elem in xElements)
+                {
+                    list.Add(new MessageInfo
+                    {
+                        MessageId = elem.Attribute("MessageId").Value,
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
+                        SenderName = elem.Element("SenderName").Value,
+                        DateDelivery = Convert.ToDateTime(elem.Element("DateDelivery").Value),
+                        Subject = elem.Element("Subject").Value,
+                        Body = elem.Element("Body").Value
+                    });
+                }
+            }
+
+            return list;
+        }
+
         private void SaveComponents()
         {
             if (Components != null)
@@ -326,6 +357,28 @@ namespace ReinforcedConcreteFactoryFileImplement
 
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(ImplementerFileName);
+            }
+        }
+
+        private void SaveMessageInfoes()
+        {
+            if (MessageInfoes != null)
+            {
+                var xElement = new XElement("MessageInfoes");
+
+                foreach (var messageInfo in MessageInfoes)
+                {
+                    xElement.Add(new XElement("MessageInfo",
+                    new XAttribute("Id", messageInfo.MessageId),
+                    new XElement("ClientId", messageInfo.ClientId),
+                    new XElement("SenderName", messageInfo.SenderName),
+                    new XElement("DateDelivery", messageInfo.DateDelivery),
+                    new XElement("Subject", messageInfo.Subject),
+                    new XElement("Body", messageInfo.Body)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(MessageInfoFileName);
             }
         }
     }

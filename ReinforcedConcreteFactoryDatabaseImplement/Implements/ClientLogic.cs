@@ -5,8 +5,6 @@ using ReinforcedConcreteFactoryDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
 {
@@ -39,6 +37,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 }
 
                 element.Email = model.Email;
+                element.FIO = model.FIO;
+                element.Password = model.Password;
 
                 context.SaveChanges();
             }
