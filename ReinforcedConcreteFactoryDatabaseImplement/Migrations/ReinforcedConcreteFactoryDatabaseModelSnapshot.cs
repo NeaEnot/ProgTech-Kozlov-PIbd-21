@@ -19,6 +19,30 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.Component", b =>
                 {
                     b.Property<int>("Id")
@@ -42,6 +66,9 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -61,6 +88,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ProductId");
 
@@ -147,14 +176,19 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
 
                     b.HasIndex("ComponentId");
 
-                    b.HasIndex("WarehouseId")
-                        .IsUnique();
+                    b.HasIndex("WarehouseId");
 
                     b.ToTable("WarehouseComponents");
                 });
 
             modelBuilder.Entity("ReinforcedConcreteFactoryDatabaseImplement.Models.Order", b =>
                 {
+                    b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Product", "Product")
                         .WithMany("Orders")
                         .HasForeignKey("ProductId")
@@ -186,8 +220,8 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Migrations
                         .IsRequired();
 
                     b.HasOne("ReinforcedConcreteFactoryDatabaseImplement.Models.Warehouse", "Warehouse")
-                        .WithOne("WarehouseComponent")
-                        .HasForeignKey("ReinforcedConcreteFactoryDatabaseImplement.Models.WarehouseComponent", "WarehouseId")
+                        .WithMany("WarehouseComponents")
+                        .HasForeignKey("WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

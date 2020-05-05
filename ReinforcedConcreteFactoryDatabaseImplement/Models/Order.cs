@@ -12,8 +12,9 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
     {
         public int Id { get; set; }
 
+        public int ClientId { get; set; }
+
         public int ProductId { get; set; }
-		
 
         [Required]
         public int Count { get; set; }
@@ -30,5 +31,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Models
         public DateTime? DateImplement { get; set; }
 
         public Product Product { get; set; }
+
+        public Client Client { get; set; }
     }
 }

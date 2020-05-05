@@ -19,13 +19,14 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
         public void CreateOrder(CreateOrderBindingModel model)
         {
             orderLogic.CreateOrUpdate(new OrderBindingModel
-                                            {
-                                                ProductId = model.ProductId,
-                                                Count = model.Count,
-                                                Sum = model.Sum,
-                                                DateCreate = DateTime.Now,
-                                                Status = OrderStatus.Принят
-                                            });
+            {
+                ProductId = model.ProductId,
+                ClientId = model.ClientId,
+                Count = model.Count,
+                Sum = model.Sum,
+                DateCreate = DateTime.Now,
+                Status = OrderStatus.Принят
+            });
         }
 
         public void TakeOrderInWork(ChangeStatusBindingModel model)
@@ -45,14 +46,15 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             warehouseLogic.WriteOffComponents(order);
 
             orderLogic.CreateOrUpdate(new OrderBindingModel
-                                            {
-                                                Id = order.Id,
-                                                ProductId = order.ProductId,
-                                                Count = order.Count,
-                                                Sum = order.Sum,
-                                                DateCreate = order.DateCreate,
-                                                Status = OrderStatus.Выполняется
-                                            });
+            {
+                Id = order.Id,
+                ClientId = order.ClientId,
+                ProductId = order.ProductId,
+                Count = order.Count,
+                Sum = order.Sum,
+                DateCreate = order.DateCreate,
+                Status = OrderStatus.Выполняется
+            });
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)
@@ -72,6 +74,7 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
                 ProductId = order.ProductId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -96,15 +99,16 @@ namespace ReinforcedConcreteFactoryBusinessLogic.BusinessLogic
             }
 
             orderLogic.CreateOrUpdate(new OrderBindingModel
-                                            {
-                                                Id = order.Id,
-                                                ProductId = order.ProductId,
-                                                Count = order.Count,
-                                                Sum = order.Sum,
-                                                DateCreate = order.DateCreate,
-                                                DateImplement = order.DateImplement,
-                                                Status = OrderStatus.Оплачен
-                                            });
+            {
+                Id = order.Id,
+                ClientId = order.ClientId,
+                ProductId = order.ProductId,
+                Count = order.Count,
+                Sum = order.Sum,
+                DateCreate = order.DateCreate,
+                DateImplement = order.DateImplement,
+                Status = OrderStatus.Оплачен
+            });
         }
 
         public void ReplanishWarehouse(WarehouseComponentBindingModel model)
