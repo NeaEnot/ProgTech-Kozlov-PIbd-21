@@ -56,19 +56,7 @@ namespace ReinforcedConcreteFactoryView
         {
             try
             {
-                if (productComponents != null)
-                {
-                    dataGridView.Rows.Clear();
-                    dataGridView.ColumnCount = 3;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].HeaderText = "Компонент";
-                    dataGridView.Columns[2].HeaderText = "Количество";
-                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    foreach (var pc in productComponents)
-                    {
-                        dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
-                    }
-                }
+                Program.ConfigGrid(logic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
