@@ -50,10 +50,7 @@ namespace ReinforcedConcreteFactoryFileImplement.Implements
         public List<ImplementerViewModel> Read(ImplementerBindingModel model)
         {
             return source.Implementers
-            .Where(
-                rec => model == null
-                || rec.Id == model.Id
-            )
+            .Where(rec => model == null || rec.Id == model.Id)
             .Select(rec => new ImplementerViewModel
             {
                 Id = rec.Id,
