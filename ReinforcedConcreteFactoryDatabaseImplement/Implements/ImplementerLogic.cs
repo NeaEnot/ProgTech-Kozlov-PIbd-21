@@ -14,9 +14,23 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
         {
             using (var context = new ReinforcedConcreteFactoryDatabase())
             {
-                Implementer element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
+                Implementer element = context.Implementers.FirstOrDefault(rec => rec.ImplementerFIO  == model.ImplementerFIO && rec.Id != model.Id);
+                
+                if (element != null)
+                {
+                    throw new Exception("Уже есть клиент с таким названием");
+                }
 
-                if (element == null)
+                 if (model.Id.HasValue)
+                {
+                    element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
+
+                    if (element == null)
+                    {
+                        throw new Exception("Элемент не найден");
+                    }
+                }
+                else
                 {
                     element = new Implementer();
                     context.Implementers.Add(element);
