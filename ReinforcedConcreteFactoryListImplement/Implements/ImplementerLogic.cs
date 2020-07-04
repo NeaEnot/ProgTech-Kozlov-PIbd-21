@@ -24,6 +24,11 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
 
             foreach (var implementer in source.Implementers)
             {
+                if (implementer.ImplementerFIO == model.ImplementerFIO && implementer.Id != model.Id)
+                {
+                    throw new Exception("Уже есть компонент с таким названием");
+                }
+            
                 if (implementer.Id >= tempImplementer.Id)
                 {
                     tempImplementer.Id = implementer.Id + 1;
