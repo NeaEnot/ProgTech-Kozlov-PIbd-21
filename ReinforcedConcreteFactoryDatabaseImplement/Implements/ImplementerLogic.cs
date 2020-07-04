@@ -18,7 +18,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
                 
                 if (element != null)
                 {
-                    throw new Exception("Уже есть клиент с таким названием");
+                    throw new Exception("Уже есть исполнитель с таким ФИО");
                 }
 
                  if (model.Id.HasValue)
