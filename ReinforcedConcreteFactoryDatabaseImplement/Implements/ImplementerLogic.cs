@@ -23,7 +23,7 @@ namespace ReinforcedConcreteFactoryDatabaseImplement.Implements
 
                  if (model.Id.HasValue)
                 {
-                    element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
+                    element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
 
                     if (element == null)
                     {
