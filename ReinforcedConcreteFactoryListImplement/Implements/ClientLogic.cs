@@ -22,6 +22,11 @@ namespace ReinforcedConcreteFactoryListImplement.Implements
 
             foreach (var client in source.Clients)
             {
+                if (client.Email == model.Email && client.Id != model.Id)
+                {
+                    throw new Exception("Уже есть клиент с такой почтой");
+                }
+                
                 if (!model.Id.HasValue && client.Id >= tempClient.Id)
                 {
                     tempClient.Id = client.Id + 1;
